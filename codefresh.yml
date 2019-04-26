@@ -1,0 +1,16 @@
+version: '1.0'
+steps:
+  build_web_app:
+    title: Building Client Application (Web)
+    description: Builds the sabemos frontend web application...
+    type: build
+    image_name: fabulas/sabemos-web
+    working_directory: ./packages/web/
+    dockerfile: ./dockerfiles/Dockerfile-ci
+    tag: develop # ${{CF_BRANCH}}
+  test_web_app: 
+    image: ${{build_web_app}}
+    working_directory: ./packages/web/
+    commands:
+      - yarn 
+      - yarn test
