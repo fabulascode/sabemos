@@ -5,7 +5,7 @@ services:
     container_name: react-app
     build:
       context: .
-      dockerfile: Dockerfile-dev
+      dockerfile: dockerfiles/Dockerfile-dev
     environment: 
       - NODE_ENV=development
     ports: 
