@@ -4,6 +4,9 @@
     "packages/*"
   ],
   "private": true,
+  "scripts": {
+    "start:web": "npx lerna run dev --scope=@sabemos/web"
+  },
   "devDependencies": {
     "@types/node": "^11.13.7",
     "cross-env": "^5.2.0",

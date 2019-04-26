@@ -2,5 +2,26 @@
   "name": "@sabemos/components",
   "version": "0.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "description": "> TODO: description",
+  "author": "Michael Edelman <michael@edel.mn>",
+  "homepage": "https://github.com/fabulascode/sabemos#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabulascode/sabemos.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "tsc": "tsc"
+  },
+  "bugs": {
+    "url": "https://github.com/fabulascode/sabemos/issues"
+  }
 }
