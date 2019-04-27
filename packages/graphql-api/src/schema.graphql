@@ -1,14 +1,18 @@
 type User {
   id: ID!
   email: String
-  email_confirmed: Boolean
-  phone_confirmed: Boolean
+  phone_number_verified: Boolean!
+  email_verified: Boolean!
   phone_number: String
-  cognito_id: String!
   handle: String
+  cognitoId: String!
 }
 
+enum Role {
+  USER
+  ADMIN
+}
 
 type Query {
-  me: User
+  users: [User]
 }

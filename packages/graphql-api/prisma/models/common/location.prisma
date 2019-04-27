@@ -1,0 +1,23 @@
+type Location {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  formatted_address: String
+  googleId: String
+  placeId: String
+  location: Geometry
+  metadata: LocationMetadata!
+}
+
+type LocationMetadata {
+  id: ID! @id
+  isPrimary: Boolean @default(value: false)
+  isPublic: Boolean @default(value: true)
+  isVerified: Boolean @default(value: false)
+}
+
+type Geometry {
+  id: ID! @id
+  lat: Float!
+  lng: Float!
+}

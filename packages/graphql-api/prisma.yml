@@ -1,0 +1,17 @@
+endpoint: http://localhost:4466
+datamodel:
+  - prisma/models/common/contactInformation.prisma
+  - prisma/models/common/location.prisma
+  - prisma/models/facilities/facilities.prisma
+  - prisma/models/entities/user.prisma
+  - prisma/models/entities/government.prisma
+
+generate:
+  - generator: typescript-client
+    output: ./prisma/prisma-client/ 
+  - generator: graphql-schema
+    output: ./prisma/generated/schema.graphql
+
+hooks:
+  post-deploy:
+    - prisma generate

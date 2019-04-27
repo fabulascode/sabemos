@@ -1,0 +1,37 @@
+interface ContactInformation {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  metadata: ContactMetadata!
+}
+
+type EmailAddress implements ContactInformation {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  payload: String! @unique
+  metadata: ContactMetadata!
+}
+
+type PhoneNumber implements ContactInformation {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  payload: String! @unique
+  metadata: ContactMetadata!
+}
+
+type ExternalLink implements ContactInformation {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  payload: String! @unique
+  metadata: ContactMetadata!
+}
+
+type ContactMetadata {
+  id: ID! @id
+  isPrimary: Boolean @default(value: false)
+  isPublic: Boolean @default(value: true)
+  isVerified: Boolean @default(value: false)
+}

@@ -1,0 +1,50 @@
+type GovernmentBody {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  facilities: [GovernmentFacility]
+  parent: GovernmentBody @relation(name: "ParentOnGovernmentBody")
+  children: [GovernmentBody!]! @relation(name: "ChildrenOnGovernmentBody")
+  metadata: GovernmentBodyMetadata!
+}
+
+type GovernmentActor {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  profile: GovernmentActorProfile!
+  affiliations: [Affiliation!]!
+}
+
+type GovernmentActorProfile {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  firstName: String
+  lastName: String
+  email: [EmailAddress!]!
+  phone_number: [PhoneNumber!]!
+}
+
+type GovernmentBodyMetadata {
+  id: ID! @id
+  hasChildren: Boolean @default(value: false)
+  hasParent: Boolean @default(value: false)
+}
+
+type Affiliation {
+  id: ID! @id
+  actor: GovernmentActor!
+  body: GovernmentBody!
+  dateStarted: DateTime!
+  dateEnded: DateTime
+  role: AffiliationRole
+  notes: Json
+}
+
+type AffiliationRole {
+  id: ID! @id
+  body: GovernmentBody!
+  abbr: String
+  name: String!
+}
