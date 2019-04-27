@@ -1,0 +1,21 @@
+type User implements Node {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  handle: String @unique
+  cognitoId: String! @unique
+  profile: UserProfile! @relation(link: INLINE)
+}
+
+type UserProfile {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  user: User!
+  firstName: String
+  lastName: String
+  avatar: String
+  location: String
+  email: [EmailAddress!]!
+  phone_number: [PhoneNumber!]!
+}

@@ -1,0 +1,18 @@
+type User {
+  id: ID!
+  email: String
+  phone_number_verified: Boolean!
+  email_verified: Boolean!
+  phone_number: String
+  handle: String
+  cognitoId: String!
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+type Query {
+  users: [User]
+}

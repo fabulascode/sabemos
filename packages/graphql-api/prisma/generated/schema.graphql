@@ -1,0 +1,3420 @@
+type Affiliation {
+  id: ID!
+  actor: GovernmentActor!
+  body: GovernmentBody!
+  dateStarted: DateTime!
+  dateEnded: DateTime
+  role: AffiliationRole
+  notes: Json
+}
+
+type AffiliationConnection {
+  pageInfo: PageInfo!
+  edges: [AffiliationEdge]!
+  aggregate: AggregateAffiliation!
+}
+
+input AffiliationCreateInput {
+  id: ID
+  actor: GovernmentActorCreateOneWithoutAffiliationsInput!
+  body: GovernmentBodyCreateOneInput!
+  dateStarted: DateTime!
+  dateEnded: DateTime
+  role: AffiliationRoleCreateOneInput
+  notes: Json
+}
+
+input AffiliationCreateManyWithoutActorInput {
+  create: [AffiliationCreateWithoutActorInput!]
+  connect: [AffiliationWhereUniqueInput!]
+}
+
+input AffiliationCreateWithoutActorInput {
+  id: ID
+  body: GovernmentBodyCreateOneInput!
+  dateStarted: DateTime!
+  dateEnded: DateTime
+  role: AffiliationRoleCreateOneInput
+  notes: Json
+}
+
+type AffiliationEdge {
+  node: Affiliation!
+  cursor: String!
+}
+
+enum AffiliationOrderByInput {
+  id_ASC
+  id_DESC
+  dateStarted_ASC
+  dateStarted_DESC
+  dateEnded_ASC
+  dateEnded_DESC
+  notes_ASC
+  notes_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AffiliationPreviousValues {
+  id: ID!
+  dateStarted: DateTime!
+  dateEnded: DateTime
+  notes: Json
+}
+
+type AffiliationRole {
+  id: ID!
+  body: GovernmentBody!
+  abbr: String
+  name: String!
+}
+
+type AffiliationRoleConnection {
+  pageInfo: PageInfo!
+  edges: [AffiliationRoleEdge]!
+  aggregate: AggregateAffiliationRole!
+}
+
+input AffiliationRoleCreateInput {
+  id: ID
+  body: GovernmentBodyCreateOneInput!
+  abbr: String
+  name: String!
+}
+
+input AffiliationRoleCreateOneInput {
+  create: AffiliationRoleCreateInput
+  connect: AffiliationRoleWhereUniqueInput
+}
+
+type AffiliationRoleEdge {
+  node: AffiliationRole!
+  cursor: String!
+}
+
+enum AffiliationRoleOrderByInput {
+  id_ASC
+  id_DESC
+  abbr_ASC
+  abbr_DESC
+  name_ASC
+  name_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AffiliationRolePreviousValues {
+  id: ID!
+  abbr: String
+  name: String!
+}
+
+type AffiliationRoleSubscriptionPayload {
+  mutation: MutationType!
+  node: AffiliationRole
+  updatedFields: [String!]
+  previousValues: AffiliationRolePreviousValues
+}
+
+input AffiliationRoleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AffiliationRoleWhereInput
+  AND: [AffiliationRoleSubscriptionWhereInput!]
+  OR: [AffiliationRoleSubscriptionWhereInput!]
+  NOT: [AffiliationRoleSubscriptionWhereInput!]
+}
+
+input AffiliationRoleUpdateDataInput {
+  body: GovernmentBodyUpdateOneRequiredInput
+  abbr: String
+  name: String
+}
+
+input AffiliationRoleUpdateInput {
+  body: GovernmentBodyUpdateOneRequiredInput
+  abbr: String
+  name: String
+}
+
+input AffiliationRoleUpdateManyMutationInput {
+  abbr: String
+  name: String
+}
+
+input AffiliationRoleUpdateOneInput {
+  create: AffiliationRoleCreateInput
+  update: AffiliationRoleUpdateDataInput
+  upsert: AffiliationRoleUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: AffiliationRoleWhereUniqueInput
+}
+
+input AffiliationRoleUpsertNestedInput {
+  update: AffiliationRoleUpdateDataInput!
+  create: AffiliationRoleCreateInput!
+}
+
+input AffiliationRoleWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  body: GovernmentBodyWhereInput
+  abbr: String
+  abbr_not: String
+  abbr_in: [String!]
+  abbr_not_in: [String!]
+  abbr_lt: String
+  abbr_lte: String
+  abbr_gt: String
+  abbr_gte: String
+  abbr_contains: String
+  abbr_not_contains: String
+  abbr_starts_with: String
+  abbr_not_starts_with: String
+  abbr_ends_with: String
+  abbr_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [AffiliationRoleWhereInput!]
+  OR: [AffiliationRoleWhereInput!]
+  NOT: [AffiliationRoleWhereInput!]
+}
+
+input AffiliationRoleWhereUniqueInput {
+  id: ID
+}
+
+input AffiliationScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  dateStarted: DateTime
+  dateStarted_not: DateTime
+  dateStarted_in: [DateTime!]
+  dateStarted_not_in: [DateTime!]
+  dateStarted_lt: DateTime
+  dateStarted_lte: DateTime
+  dateStarted_gt: DateTime
+  dateStarted_gte: DateTime
+  dateEnded: DateTime
+  dateEnded_not: DateTime
+  dateEnded_in: [DateTime!]
+  dateEnded_not_in: [DateTime!]
+  dateEnded_lt: DateTime
+  dateEnded_lte: DateTime
+  dateEnded_gt: DateTime
+  dateEnded_gte: DateTime
+  AND: [AffiliationScalarWhereInput!]
+  OR: [AffiliationScalarWhereInput!]
+  NOT: [AffiliationScalarWhereInput!]
+}
+
+type AffiliationSubscriptionPayload {
+  mutation: MutationType!
+  node: Affiliation
+  updatedFields: [String!]
+  previousValues: AffiliationPreviousValues
+}
+
+input AffiliationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AffiliationWhereInput
+  AND: [AffiliationSubscriptionWhereInput!]
+  OR: [AffiliationSubscriptionWhereInput!]
+  NOT: [AffiliationSubscriptionWhereInput!]
+}
+
+input AffiliationUpdateInput {
+  actor: GovernmentActorUpdateOneRequiredWithoutAffiliationsInput
+  body: GovernmentBodyUpdateOneRequiredInput
+  dateStarted: DateTime
+  dateEnded: DateTime
+  role: AffiliationRoleUpdateOneInput
+  notes: Json
+}
+
+input AffiliationUpdateManyDataInput {
+  dateStarted: DateTime
+  dateEnded: DateTime
+  notes: Json
+}
+
+input AffiliationUpdateManyMutationInput {
+  dateStarted: DateTime
+  dateEnded: DateTime
+  notes: Json
+}
+
+input AffiliationUpdateManyWithoutActorInput {
+  create: [AffiliationCreateWithoutActorInput!]
+  delete: [AffiliationWhereUniqueInput!]
+  connect: [AffiliationWhereUniqueInput!]
+  set: [AffiliationWhereUniqueInput!]
+  disconnect: [AffiliationWhereUniqueInput!]
+  update: [AffiliationUpdateWithWhereUniqueWithoutActorInput!]
+  upsert: [AffiliationUpsertWithWhereUniqueWithoutActorInput!]
+  deleteMany: [AffiliationScalarWhereInput!]
+  updateMany: [AffiliationUpdateManyWithWhereNestedInput!]
+}
+
+input AffiliationUpdateManyWithWhereNestedInput {
+  where: AffiliationScalarWhereInput!
+  data: AffiliationUpdateManyDataInput!
+}
+
+input AffiliationUpdateWithoutActorDataInput {
+  body: GovernmentBodyUpdateOneRequiredInput
+  dateStarted: DateTime
+  dateEnded: DateTime
+  role: AffiliationRoleUpdateOneInput
+  notes: Json
+}
+
+input AffiliationUpdateWithWhereUniqueWithoutActorInput {
+  where: AffiliationWhereUniqueInput!
+  data: AffiliationUpdateWithoutActorDataInput!
+}
+
+input AffiliationUpsertWithWhereUniqueWithoutActorInput {
+  where: AffiliationWhereUniqueInput!
+  update: AffiliationUpdateWithoutActorDataInput!
+  create: AffiliationCreateWithoutActorInput!
+}
+
+input AffiliationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  actor: GovernmentActorWhereInput
+  body: GovernmentBodyWhereInput
+  dateStarted: DateTime
+  dateStarted_not: DateTime
+  dateStarted_in: [DateTime!]
+  dateStarted_not_in: [DateTime!]
+  dateStarted_lt: DateTime
+  dateStarted_lte: DateTime
+  dateStarted_gt: DateTime
+  dateStarted_gte: DateTime
+  dateEnded: DateTime
+  dateEnded_not: DateTime
+  dateEnded_in: [DateTime!]
+  dateEnded_not_in: [DateTime!]
+  dateEnded_lt: DateTime
+  dateEnded_lte: DateTime
+  dateEnded_gt: DateTime
+  dateEnded_gte: DateTime
+  role: AffiliationRoleWhereInput
+  AND: [AffiliationWhereInput!]
+  OR: [AffiliationWhereInput!]
+  NOT: [AffiliationWhereInput!]
+}
+
+input AffiliationWhereUniqueInput {
+  id: ID
+}
+
+type AggregateAffiliation {
+  count: Int!
+}
+
+type AggregateAffiliationRole {
+  count: Int!
+}
+
+type AggregateContactMetadata {
+  count: Int!
+}
+
+type AggregateEmailAddress {
+  count: Int!
+}
+
+type AggregateExternalLink {
+  count: Int!
+}
+
+type AggregateFacilityMetadata {
+  count: Int!
+}
+
+type AggregateGeometry {
+  count: Int!
+}
+
+type AggregateGovernmentActor {
+  count: Int!
+}
+
+type AggregateGovernmentActorProfile {
+  count: Int!
+}
+
+type AggregateGovernmentBody {
+  count: Int!
+}
+
+type AggregateGovernmentBodyMetadata {
+  count: Int!
+}
+
+type AggregateGovernmentFacility {
+  count: Int!
+}
+
+type AggregateLocation {
+  count: Int!
+}
+
+type AggregateLocationMetadata {
+  count: Int!
+}
+
+type AggregatePhoneNumber {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type AggregateUserProfile {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type ContactMetadata {
+  id: ID!
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+type ContactMetadataConnection {
+  pageInfo: PageInfo!
+  edges: [ContactMetadataEdge]!
+  aggregate: AggregateContactMetadata!
+}
+
+input ContactMetadataCreateInput {
+  id: ID
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input ContactMetadataCreateOneInput {
+  create: ContactMetadataCreateInput
+  connect: ContactMetadataWhereUniqueInput
+}
+
+type ContactMetadataEdge {
+  node: ContactMetadata!
+  cursor: String!
+}
+
+enum ContactMetadataOrderByInput {
+  id_ASC
+  id_DESC
+  isPrimary_ASC
+  isPrimary_DESC
+  isPublic_ASC
+  isPublic_DESC
+  isVerified_ASC
+  isVerified_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ContactMetadataPreviousValues {
+  id: ID!
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+type ContactMetadataSubscriptionPayload {
+  mutation: MutationType!
+  node: ContactMetadata
+  updatedFields: [String!]
+  previousValues: ContactMetadataPreviousValues
+}
+
+input ContactMetadataSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContactMetadataWhereInput
+  AND: [ContactMetadataSubscriptionWhereInput!]
+  OR: [ContactMetadataSubscriptionWhereInput!]
+  NOT: [ContactMetadataSubscriptionWhereInput!]
+}
+
+input ContactMetadataUpdateDataInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input ContactMetadataUpdateInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input ContactMetadataUpdateManyMutationInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input ContactMetadataUpdateOneRequiredInput {
+  create: ContactMetadataCreateInput
+  update: ContactMetadataUpdateDataInput
+  upsert: ContactMetadataUpsertNestedInput
+  connect: ContactMetadataWhereUniqueInput
+}
+
+input ContactMetadataUpsertNestedInput {
+  update: ContactMetadataUpdateDataInput!
+  create: ContactMetadataCreateInput!
+}
+
+input ContactMetadataWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  isPrimary: Boolean
+  isPrimary_not: Boolean
+  isPublic: Boolean
+  isPublic_not: Boolean
+  isVerified: Boolean
+  isVerified_not: Boolean
+  AND: [ContactMetadataWhereInput!]
+  OR: [ContactMetadataWhereInput!]
+  NOT: [ContactMetadataWhereInput!]
+}
+
+input ContactMetadataWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+type EmailAddress {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  payload: String!
+  metadata: ContactMetadata!
+}
+
+type EmailAddressConnection {
+  pageInfo: PageInfo!
+  edges: [EmailAddressEdge]!
+  aggregate: AggregateEmailAddress!
+}
+
+input EmailAddressCreateInput {
+  id: ID
+  payload: String!
+  metadata: ContactMetadataCreateOneInput!
+}
+
+input EmailAddressCreateManyInput {
+  create: [EmailAddressCreateInput!]
+  connect: [EmailAddressWhereUniqueInput!]
+}
+
+input EmailAddressCreateOneInput {
+  create: EmailAddressCreateInput
+  connect: EmailAddressWhereUniqueInput
+}
+
+type EmailAddressEdge {
+  node: EmailAddress!
+  cursor: String!
+}
+
+enum EmailAddressOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  payload_ASC
+  payload_DESC
+}
+
+type EmailAddressPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  payload: String!
+}
+
+input EmailAddressScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  payload: String
+  payload_not: String
+  payload_in: [String!]
+  payload_not_in: [String!]
+  payload_lt: String
+  payload_lte: String
+  payload_gt: String
+  payload_gte: String
+  payload_contains: String
+  payload_not_contains: String
+  payload_starts_with: String
+  payload_not_starts_with: String
+  payload_ends_with: String
+  payload_not_ends_with: String
+  AND: [EmailAddressScalarWhereInput!]
+  OR: [EmailAddressScalarWhereInput!]
+  NOT: [EmailAddressScalarWhereInput!]
+}
+
+type EmailAddressSubscriptionPayload {
+  mutation: MutationType!
+  node: EmailAddress
+  updatedFields: [String!]
+  previousValues: EmailAddressPreviousValues
+}
+
+input EmailAddressSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: EmailAddressWhereInput
+  AND: [EmailAddressSubscriptionWhereInput!]
+  OR: [EmailAddressSubscriptionWhereInput!]
+  NOT: [EmailAddressSubscriptionWhereInput!]
+}
+
+input EmailAddressUpdateDataInput {
+  payload: String
+  metadata: ContactMetadataUpdateOneRequiredInput
+}
+
+input EmailAddressUpdateInput {
+  payload: String
+  metadata: ContactMetadataUpdateOneRequiredInput
+}
+
+input EmailAddressUpdateManyDataInput {
+  payload: String
+}
+
+input EmailAddressUpdateManyInput {
+  create: [EmailAddressCreateInput!]
+  update: [EmailAddressUpdateWithWhereUniqueNestedInput!]
+  upsert: [EmailAddressUpsertWithWhereUniqueNestedInput!]
+  delete: [EmailAddressWhereUniqueInput!]
+  connect: [EmailAddressWhereUniqueInput!]
+  set: [EmailAddressWhereUniqueInput!]
+  disconnect: [EmailAddressWhereUniqueInput!]
+  deleteMany: [EmailAddressScalarWhereInput!]
+  updateMany: [EmailAddressUpdateManyWithWhereNestedInput!]
+}
+
+input EmailAddressUpdateManyMutationInput {
+  payload: String
+}
+
+input EmailAddressUpdateManyWithWhereNestedInput {
+  where: EmailAddressScalarWhereInput!
+  data: EmailAddressUpdateManyDataInput!
+}
+
+input EmailAddressUpdateOneInput {
+  create: EmailAddressCreateInput
+  update: EmailAddressUpdateDataInput
+  upsert: EmailAddressUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: EmailAddressWhereUniqueInput
+}
+
+input EmailAddressUpdateWithWhereUniqueNestedInput {
+  where: EmailAddressWhereUniqueInput!
+  data: EmailAddressUpdateDataInput!
+}
+
+input EmailAddressUpsertNestedInput {
+  update: EmailAddressUpdateDataInput!
+  create: EmailAddressCreateInput!
+}
+
+input EmailAddressUpsertWithWhereUniqueNestedInput {
+  where: EmailAddressWhereUniqueInput!
+  update: EmailAddressUpdateDataInput!
+  create: EmailAddressCreateInput!
+}
+
+input EmailAddressWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  payload: String
+  payload_not: String
+  payload_in: [String!]
+  payload_not_in: [String!]
+  payload_lt: String
+  payload_lte: String
+  payload_gt: String
+  payload_gte: String
+  payload_contains: String
+  payload_not_contains: String
+  payload_starts_with: String
+  payload_not_starts_with: String
+  payload_ends_with: String
+  payload_not_ends_with: String
+  metadata: ContactMetadataWhereInput
+  AND: [EmailAddressWhereInput!]
+  OR: [EmailAddressWhereInput!]
+  NOT: [EmailAddressWhereInput!]
+}
+
+input EmailAddressWhereUniqueInput {
+  id: ID
+  payload: String
+}
+
+type ExternalLink {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  payload: String!
+  metadata: ContactMetadata!
+}
+
+type ExternalLinkConnection {
+  pageInfo: PageInfo!
+  edges: [ExternalLinkEdge]!
+  aggregate: AggregateExternalLink!
+}
+
+input ExternalLinkCreateInput {
+  id: ID
+  payload: String!
+  metadata: ContactMetadataCreateOneInput!
+}
+
+input ExternalLinkCreateOneInput {
+  create: ExternalLinkCreateInput
+  connect: ExternalLinkWhereUniqueInput
+}
+
+type ExternalLinkEdge {
+  node: ExternalLink!
+  cursor: String!
+}
+
+enum ExternalLinkOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  payload_ASC
+  payload_DESC
+}
+
+type ExternalLinkPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  payload: String!
+}
+
+type ExternalLinkSubscriptionPayload {
+  mutation: MutationType!
+  node: ExternalLink
+  updatedFields: [String!]
+  previousValues: ExternalLinkPreviousValues
+}
+
+input ExternalLinkSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ExternalLinkWhereInput
+  AND: [ExternalLinkSubscriptionWhereInput!]
+  OR: [ExternalLinkSubscriptionWhereInput!]
+  NOT: [ExternalLinkSubscriptionWhereInput!]
+}
+
+input ExternalLinkUpdateDataInput {
+  payload: String
+  metadata: ContactMetadataUpdateOneRequiredInput
+}
+
+input ExternalLinkUpdateInput {
+  payload: String
+  metadata: ContactMetadataUpdateOneRequiredInput
+}
+
+input ExternalLinkUpdateManyMutationInput {
+  payload: String
+}
+
+input ExternalLinkUpdateOneInput {
+  create: ExternalLinkCreateInput
+  update: ExternalLinkUpdateDataInput
+  upsert: ExternalLinkUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ExternalLinkWhereUniqueInput
+}
+
+input ExternalLinkUpsertNestedInput {
+  update: ExternalLinkUpdateDataInput!
+  create: ExternalLinkCreateInput!
+}
+
+input ExternalLinkWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  payload: String
+  payload_not: String
+  payload_in: [String!]
+  payload_not_in: [String!]
+  payload_lt: String
+  payload_lte: String
+  payload_gt: String
+  payload_gte: String
+  payload_contains: String
+  payload_not_contains: String
+  payload_starts_with: String
+  payload_not_starts_with: String
+  payload_ends_with: String
+  payload_not_ends_with: String
+  metadata: ContactMetadataWhereInput
+  AND: [ExternalLinkWhereInput!]
+  OR: [ExternalLinkWhereInput!]
+  NOT: [ExternalLinkWhereInput!]
+}
+
+input ExternalLinkWhereUniqueInput {
+  id: ID
+  payload: String
+}
+
+type FacilityMetadata {
+  id: ID!
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+type FacilityMetadataConnection {
+  pageInfo: PageInfo!
+  edges: [FacilityMetadataEdge]!
+  aggregate: AggregateFacilityMetadata!
+}
+
+input FacilityMetadataCreateInput {
+  id: ID
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input FacilityMetadataCreateOneInput {
+  create: FacilityMetadataCreateInput
+  connect: FacilityMetadataWhereUniqueInput
+}
+
+type FacilityMetadataEdge {
+  node: FacilityMetadata!
+  cursor: String!
+}
+
+enum FacilityMetadataOrderByInput {
+  id_ASC
+  id_DESC
+  isPrimary_ASC
+  isPrimary_DESC
+  isPublic_ASC
+  isPublic_DESC
+  isVerified_ASC
+  isVerified_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type FacilityMetadataPreviousValues {
+  id: ID!
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+type FacilityMetadataSubscriptionPayload {
+  mutation: MutationType!
+  node: FacilityMetadata
+  updatedFields: [String!]
+  previousValues: FacilityMetadataPreviousValues
+}
+
+input FacilityMetadataSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: FacilityMetadataWhereInput
+  AND: [FacilityMetadataSubscriptionWhereInput!]
+  OR: [FacilityMetadataSubscriptionWhereInput!]
+  NOT: [FacilityMetadataSubscriptionWhereInput!]
+}
+
+input FacilityMetadataUpdateDataInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input FacilityMetadataUpdateInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input FacilityMetadataUpdateManyMutationInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input FacilityMetadataUpdateOneRequiredInput {
+  create: FacilityMetadataCreateInput
+  update: FacilityMetadataUpdateDataInput
+  upsert: FacilityMetadataUpsertNestedInput
+  connect: FacilityMetadataWhereUniqueInput
+}
+
+input FacilityMetadataUpsertNestedInput {
+  update: FacilityMetadataUpdateDataInput!
+  create: FacilityMetadataCreateInput!
+}
+
+input FacilityMetadataWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  isPrimary: Boolean
+  isPrimary_not: Boolean
+  isPublic: Boolean
+  isPublic_not: Boolean
+  isVerified: Boolean
+  isVerified_not: Boolean
+  AND: [FacilityMetadataWhereInput!]
+  OR: [FacilityMetadataWhereInput!]
+  NOT: [FacilityMetadataWhereInput!]
+}
+
+input FacilityMetadataWhereUniqueInput {
+  id: ID
+}
+
+type Geometry {
+  id: ID!
+  lat: Float!
+  lng: Float!
+}
+
+type GeometryConnection {
+  pageInfo: PageInfo!
+  edges: [GeometryEdge]!
+  aggregate: AggregateGeometry!
+}
+
+input GeometryCreateInput {
+  id: ID
+  lat: Float!
+  lng: Float!
+}
+
+input GeometryCreateOneInput {
+  create: GeometryCreateInput
+  connect: GeometryWhereUniqueInput
+}
+
+type GeometryEdge {
+  node: Geometry!
+  cursor: String!
+}
+
+enum GeometryOrderByInput {
+  id_ASC
+  id_DESC
+  lat_ASC
+  lat_DESC
+  lng_ASC
+  lng_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type GeometryPreviousValues {
+  id: ID!
+  lat: Float!
+  lng: Float!
+}
+
+type GeometrySubscriptionPayload {
+  mutation: MutationType!
+  node: Geometry
+  updatedFields: [String!]
+  previousValues: GeometryPreviousValues
+}
+
+input GeometrySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GeometryWhereInput
+  AND: [GeometrySubscriptionWhereInput!]
+  OR: [GeometrySubscriptionWhereInput!]
+  NOT: [GeometrySubscriptionWhereInput!]
+}
+
+input GeometryUpdateDataInput {
+  lat: Float
+  lng: Float
+}
+
+input GeometryUpdateInput {
+  lat: Float
+  lng: Float
+}
+
+input GeometryUpdateManyMutationInput {
+  lat: Float
+  lng: Float
+}
+
+input GeometryUpdateOneInput {
+  create: GeometryCreateInput
+  update: GeometryUpdateDataInput
+  upsert: GeometryUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: GeometryWhereUniqueInput
+}
+
+input GeometryUpsertNestedInput {
+  update: GeometryUpdateDataInput!
+  create: GeometryCreateInput!
+}
+
+input GeometryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  lat: Float
+  lat_not: Float
+  lat_in: [Float!]
+  lat_not_in: [Float!]
+  lat_lt: Float
+  lat_lte: Float
+  lat_gt: Float
+  lat_gte: Float
+  lng: Float
+  lng_not: Float
+  lng_in: [Float!]
+  lng_not_in: [Float!]
+  lng_lt: Float
+  lng_lte: Float
+  lng_gt: Float
+  lng_gte: Float
+  AND: [GeometryWhereInput!]
+  OR: [GeometryWhereInput!]
+  NOT: [GeometryWhereInput!]
+}
+
+input GeometryWhereUniqueInput {
+  id: ID
+}
+
+type GovernmentActor {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  profile: GovernmentActorProfile!
+  affiliations(where: AffiliationWhereInput, orderBy: AffiliationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Affiliation!]
+}
+
+type GovernmentActorConnection {
+  pageInfo: PageInfo!
+  edges: [GovernmentActorEdge]!
+  aggregate: AggregateGovernmentActor!
+}
+
+input GovernmentActorCreateInput {
+  id: ID
+  profile: GovernmentActorProfileCreateOneInput!
+  affiliations: AffiliationCreateManyWithoutActorInput
+}
+
+input GovernmentActorCreateManyInput {
+  create: [GovernmentActorCreateInput!]
+  connect: [GovernmentActorWhereUniqueInput!]
+}
+
+input GovernmentActorCreateOneWithoutAffiliationsInput {
+  create: GovernmentActorCreateWithoutAffiliationsInput
+  connect: GovernmentActorWhereUniqueInput
+}
+
+input GovernmentActorCreateWithoutAffiliationsInput {
+  id: ID
+  profile: GovernmentActorProfileCreateOneInput!
+}
+
+type GovernmentActorEdge {
+  node: GovernmentActor!
+  cursor: String!
+}
+
+enum GovernmentActorOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type GovernmentActorPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type GovernmentActorProfile {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  firstName: String
+  lastName: String
+  email(where: EmailAddressWhereInput, orderBy: EmailAddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EmailAddress!]
+  phone_number(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PhoneNumber!]
+}
+
+type GovernmentActorProfileConnection {
+  pageInfo: PageInfo!
+  edges: [GovernmentActorProfileEdge]!
+  aggregate: AggregateGovernmentActorProfile!
+}
+
+input GovernmentActorProfileCreateInput {
+  id: ID
+  firstName: String
+  lastName: String
+  email: EmailAddressCreateManyInput
+  phone_number: PhoneNumberCreateManyInput
+}
+
+input GovernmentActorProfileCreateOneInput {
+  create: GovernmentActorProfileCreateInput
+  connect: GovernmentActorProfileWhereUniqueInput
+}
+
+type GovernmentActorProfileEdge {
+  node: GovernmentActorProfile!
+  cursor: String!
+}
+
+enum GovernmentActorProfileOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+}
+
+type GovernmentActorProfilePreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  firstName: String
+  lastName: String
+}
+
+type GovernmentActorProfileSubscriptionPayload {
+  mutation: MutationType!
+  node: GovernmentActorProfile
+  updatedFields: [String!]
+  previousValues: GovernmentActorProfilePreviousValues
+}
+
+input GovernmentActorProfileSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GovernmentActorProfileWhereInput
+  AND: [GovernmentActorProfileSubscriptionWhereInput!]
+  OR: [GovernmentActorProfileSubscriptionWhereInput!]
+  NOT: [GovernmentActorProfileSubscriptionWhereInput!]
+}
+
+input GovernmentActorProfileUpdateDataInput {
+  firstName: String
+  lastName: String
+  email: EmailAddressUpdateManyInput
+  phone_number: PhoneNumberUpdateManyInput
+}
+
+input GovernmentActorProfileUpdateInput {
+  firstName: String
+  lastName: String
+  email: EmailAddressUpdateManyInput
+  phone_number: PhoneNumberUpdateManyInput
+}
+
+input GovernmentActorProfileUpdateManyMutationInput {
+  firstName: String
+  lastName: String
+}
+
+input GovernmentActorProfileUpdateOneRequiredInput {
+  create: GovernmentActorProfileCreateInput
+  update: GovernmentActorProfileUpdateDataInput
+  upsert: GovernmentActorProfileUpsertNestedInput
+  connect: GovernmentActorProfileWhereUniqueInput
+}
+
+input GovernmentActorProfileUpsertNestedInput {
+  update: GovernmentActorProfileUpdateDataInput!
+  create: GovernmentActorProfileCreateInput!
+}
+
+input GovernmentActorProfileWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  email_every: EmailAddressWhereInput
+  email_some: EmailAddressWhereInput
+  email_none: EmailAddressWhereInput
+  phone_number_every: PhoneNumberWhereInput
+  phone_number_some: PhoneNumberWhereInput
+  phone_number_none: PhoneNumberWhereInput
+  AND: [GovernmentActorProfileWhereInput!]
+  OR: [GovernmentActorProfileWhereInput!]
+  NOT: [GovernmentActorProfileWhereInput!]
+}
+
+input GovernmentActorProfileWhereUniqueInput {
+  id: ID
+}
+
+input GovernmentActorScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [GovernmentActorScalarWhereInput!]
+  OR: [GovernmentActorScalarWhereInput!]
+  NOT: [GovernmentActorScalarWhereInput!]
+}
+
+type GovernmentActorSubscriptionPayload {
+  mutation: MutationType!
+  node: GovernmentActor
+  updatedFields: [String!]
+  previousValues: GovernmentActorPreviousValues
+}
+
+input GovernmentActorSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GovernmentActorWhereInput
+  AND: [GovernmentActorSubscriptionWhereInput!]
+  OR: [GovernmentActorSubscriptionWhereInput!]
+  NOT: [GovernmentActorSubscriptionWhereInput!]
+}
+
+input GovernmentActorUpdateDataInput {
+  profile: GovernmentActorProfileUpdateOneRequiredInput
+  affiliations: AffiliationUpdateManyWithoutActorInput
+}
+
+input GovernmentActorUpdateInput {
+  profile: GovernmentActorProfileUpdateOneRequiredInput
+  affiliations: AffiliationUpdateManyWithoutActorInput
+}
+
+input GovernmentActorUpdateManyInput {
+  create: [GovernmentActorCreateInput!]
+  update: [GovernmentActorUpdateWithWhereUniqueNestedInput!]
+  upsert: [GovernmentActorUpsertWithWhereUniqueNestedInput!]
+  delete: [GovernmentActorWhereUniqueInput!]
+  connect: [GovernmentActorWhereUniqueInput!]
+  set: [GovernmentActorWhereUniqueInput!]
+  disconnect: [GovernmentActorWhereUniqueInput!]
+  deleteMany: [GovernmentActorScalarWhereInput!]
+}
+
+input GovernmentActorUpdateOneRequiredWithoutAffiliationsInput {
+  create: GovernmentActorCreateWithoutAffiliationsInput
+  update: GovernmentActorUpdateWithoutAffiliationsDataInput
+  upsert: GovernmentActorUpsertWithoutAffiliationsInput
+  connect: GovernmentActorWhereUniqueInput
+}
+
+input GovernmentActorUpdateWithoutAffiliationsDataInput {
+  profile: GovernmentActorProfileUpdateOneRequiredInput
+}
+
+input GovernmentActorUpdateWithWhereUniqueNestedInput {
+  where: GovernmentActorWhereUniqueInput!
+  data: GovernmentActorUpdateDataInput!
+}
+
+input GovernmentActorUpsertWithoutAffiliationsInput {
+  update: GovernmentActorUpdateWithoutAffiliationsDataInput!
+  create: GovernmentActorCreateWithoutAffiliationsInput!
+}
+
+input GovernmentActorUpsertWithWhereUniqueNestedInput {
+  where: GovernmentActorWhereUniqueInput!
+  update: GovernmentActorUpdateDataInput!
+  create: GovernmentActorCreateInput!
+}
+
+input GovernmentActorWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  profile: GovernmentActorProfileWhereInput
+  affiliations_every: AffiliationWhereInput
+  affiliations_some: AffiliationWhereInput
+  affiliations_none: AffiliationWhereInput
+  AND: [GovernmentActorWhereInput!]
+  OR: [GovernmentActorWhereInput!]
+  NOT: [GovernmentActorWhereInput!]
+}
+
+input GovernmentActorWhereUniqueInput {
+  id: ID
+}
+
+type GovernmentBody {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  facilities(where: GovernmentFacilityWhereInput, orderBy: GovernmentFacilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentFacility!]
+  parent: GovernmentBody
+  children(where: GovernmentBodyWhereInput, orderBy: GovernmentBodyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentBody!]
+  metadata: GovernmentBodyMetadata!
+}
+
+type GovernmentBodyConnection {
+  pageInfo: PageInfo!
+  edges: [GovernmentBodyEdge]!
+  aggregate: AggregateGovernmentBody!
+}
+
+input GovernmentBodyCreateInput {
+  id: ID
+  facilities: GovernmentFacilityCreateManyInput
+  parent: GovernmentBodyCreateOneWithoutParentInput
+  children: GovernmentBodyCreateManyWithoutChildrenInput
+  metadata: GovernmentBodyMetadataCreateOneInput!
+}
+
+input GovernmentBodyCreateManyWithoutChildrenInput {
+  create: [GovernmentBodyCreateWithoutChildrenInput!]
+  connect: [GovernmentBodyWhereUniqueInput!]
+}
+
+input GovernmentBodyCreateOneInput {
+  create: GovernmentBodyCreateInput
+  connect: GovernmentBodyWhereUniqueInput
+}
+
+input GovernmentBodyCreateOneWithoutParentInput {
+  create: GovernmentBodyCreateWithoutParentInput
+  connect: GovernmentBodyWhereUniqueInput
+}
+
+input GovernmentBodyCreateWithoutChildrenInput {
+  id: ID
+  facilities: GovernmentFacilityCreateManyInput
+  parent: GovernmentBodyCreateOneWithoutParentInput
+  metadata: GovernmentBodyMetadataCreateOneInput!
+}
+
+input GovernmentBodyCreateWithoutParentInput {
+  id: ID
+  facilities: GovernmentFacilityCreateManyInput
+  children: GovernmentBodyCreateManyWithoutChildrenInput
+  metadata: GovernmentBodyMetadataCreateOneInput!
+}
+
+type GovernmentBodyEdge {
+  node: GovernmentBody!
+  cursor: String!
+}
+
+type GovernmentBodyMetadata {
+  id: ID!
+  hasChildren: Boolean
+  hasParent: Boolean
+}
+
+type GovernmentBodyMetadataConnection {
+  pageInfo: PageInfo!
+  edges: [GovernmentBodyMetadataEdge]!
+  aggregate: AggregateGovernmentBodyMetadata!
+}
+
+input GovernmentBodyMetadataCreateInput {
+  id: ID
+  hasChildren: Boolean
+  hasParent: Boolean
+}
+
+input GovernmentBodyMetadataCreateOneInput {
+  create: GovernmentBodyMetadataCreateInput
+  connect: GovernmentBodyMetadataWhereUniqueInput
+}
+
+type GovernmentBodyMetadataEdge {
+  node: GovernmentBodyMetadata!
+  cursor: String!
+}
+
+enum GovernmentBodyMetadataOrderByInput {
+  id_ASC
+  id_DESC
+  hasChildren_ASC
+  hasChildren_DESC
+  hasParent_ASC
+  hasParent_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type GovernmentBodyMetadataPreviousValues {
+  id: ID!
+  hasChildren: Boolean
+  hasParent: Boolean
+}
+
+type GovernmentBodyMetadataSubscriptionPayload {
+  mutation: MutationType!
+  node: GovernmentBodyMetadata
+  updatedFields: [String!]
+  previousValues: GovernmentBodyMetadataPreviousValues
+}
+
+input GovernmentBodyMetadataSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GovernmentBodyMetadataWhereInput
+  AND: [GovernmentBodyMetadataSubscriptionWhereInput!]
+  OR: [GovernmentBodyMetadataSubscriptionWhereInput!]
+  NOT: [GovernmentBodyMetadataSubscriptionWhereInput!]
+}
+
+input GovernmentBodyMetadataUpdateDataInput {
+  hasChildren: Boolean
+  hasParent: Boolean
+}
+
+input GovernmentBodyMetadataUpdateInput {
+  hasChildren: Boolean
+  hasParent: Boolean
+}
+
+input GovernmentBodyMetadataUpdateManyMutationInput {
+  hasChildren: Boolean
+  hasParent: Boolean
+}
+
+input GovernmentBodyMetadataUpdateOneRequiredInput {
+  create: GovernmentBodyMetadataCreateInput
+  update: GovernmentBodyMetadataUpdateDataInput
+  upsert: GovernmentBodyMetadataUpsertNestedInput
+  connect: GovernmentBodyMetadataWhereUniqueInput
+}
+
+input GovernmentBodyMetadataUpsertNestedInput {
+  update: GovernmentBodyMetadataUpdateDataInput!
+  create: GovernmentBodyMetadataCreateInput!
+}
+
+input GovernmentBodyMetadataWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  hasChildren: Boolean
+  hasChildren_not: Boolean
+  hasParent: Boolean
+  hasParent_not: Boolean
+  AND: [GovernmentBodyMetadataWhereInput!]
+  OR: [GovernmentBodyMetadataWhereInput!]
+  NOT: [GovernmentBodyMetadataWhereInput!]
+}
+
+input GovernmentBodyMetadataWhereUniqueInput {
+  id: ID
+}
+
+enum GovernmentBodyOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type GovernmentBodyPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input GovernmentBodyScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [GovernmentBodyScalarWhereInput!]
+  OR: [GovernmentBodyScalarWhereInput!]
+  NOT: [GovernmentBodyScalarWhereInput!]
+}
+
+type GovernmentBodySubscriptionPayload {
+  mutation: MutationType!
+  node: GovernmentBody
+  updatedFields: [String!]
+  previousValues: GovernmentBodyPreviousValues
+}
+
+input GovernmentBodySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GovernmentBodyWhereInput
+  AND: [GovernmentBodySubscriptionWhereInput!]
+  OR: [GovernmentBodySubscriptionWhereInput!]
+  NOT: [GovernmentBodySubscriptionWhereInput!]
+}
+
+input GovernmentBodyUpdateDataInput {
+  facilities: GovernmentFacilityUpdateManyInput
+  parent: GovernmentBodyUpdateOneWithoutParentInput
+  children: GovernmentBodyUpdateManyWithoutChildrenInput
+  metadata: GovernmentBodyMetadataUpdateOneRequiredInput
+}
+
+input GovernmentBodyUpdateInput {
+  facilities: GovernmentFacilityUpdateManyInput
+  parent: GovernmentBodyUpdateOneWithoutParentInput
+  children: GovernmentBodyUpdateManyWithoutChildrenInput
+  metadata: GovernmentBodyMetadataUpdateOneRequiredInput
+}
+
+input GovernmentBodyUpdateManyWithoutChildrenInput {
+  create: [GovernmentBodyCreateWithoutChildrenInput!]
+  delete: [GovernmentBodyWhereUniqueInput!]
+  connect: [GovernmentBodyWhereUniqueInput!]
+  set: [GovernmentBodyWhereUniqueInput!]
+  disconnect: [GovernmentBodyWhereUniqueInput!]
+  update: [GovernmentBodyUpdateWithWhereUniqueWithoutChildrenInput!]
+  upsert: [GovernmentBodyUpsertWithWhereUniqueWithoutChildrenInput!]
+  deleteMany: [GovernmentBodyScalarWhereInput!]
+}
+
+input GovernmentBodyUpdateOneRequiredInput {
+  create: GovernmentBodyCreateInput
+  update: GovernmentBodyUpdateDataInput
+  upsert: GovernmentBodyUpsertNestedInput
+  connect: GovernmentBodyWhereUniqueInput
+}
+
+input GovernmentBodyUpdateOneWithoutParentInput {
+  create: GovernmentBodyCreateWithoutParentInput
+  update: GovernmentBodyUpdateWithoutParentDataInput
+  upsert: GovernmentBodyUpsertWithoutParentInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: GovernmentBodyWhereUniqueInput
+}
+
+input GovernmentBodyUpdateWithoutChildrenDataInput {
+  facilities: GovernmentFacilityUpdateManyInput
+  parent: GovernmentBodyUpdateOneWithoutParentInput
+  metadata: GovernmentBodyMetadataUpdateOneRequiredInput
+}
+
+input GovernmentBodyUpdateWithoutParentDataInput {
+  facilities: GovernmentFacilityUpdateManyInput
+  children: GovernmentBodyUpdateManyWithoutChildrenInput
+  metadata: GovernmentBodyMetadataUpdateOneRequiredInput
+}
+
+input GovernmentBodyUpdateWithWhereUniqueWithoutChildrenInput {
+  where: GovernmentBodyWhereUniqueInput!
+  data: GovernmentBodyUpdateWithoutChildrenDataInput!
+}
+
+input GovernmentBodyUpsertNestedInput {
+  update: GovernmentBodyUpdateDataInput!
+  create: GovernmentBodyCreateInput!
+}
+
+input GovernmentBodyUpsertWithoutParentInput {
+  update: GovernmentBodyUpdateWithoutParentDataInput!
+  create: GovernmentBodyCreateWithoutParentInput!
+}
+
+input GovernmentBodyUpsertWithWhereUniqueWithoutChildrenInput {
+  where: GovernmentBodyWhereUniqueInput!
+  update: GovernmentBodyUpdateWithoutChildrenDataInput!
+  create: GovernmentBodyCreateWithoutChildrenInput!
+}
+
+input GovernmentBodyWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  facilities_every: GovernmentFacilityWhereInput
+  facilities_some: GovernmentFacilityWhereInput
+  facilities_none: GovernmentFacilityWhereInput
+  parent: GovernmentBodyWhereInput
+  children_every: GovernmentBodyWhereInput
+  children_some: GovernmentBodyWhereInput
+  children_none: GovernmentBodyWhereInput
+  metadata: GovernmentBodyMetadataWhereInput
+  AND: [GovernmentBodyWhereInput!]
+  OR: [GovernmentBodyWhereInput!]
+  NOT: [GovernmentBodyWhereInput!]
+}
+
+input GovernmentBodyWhereUniqueInput {
+  id: ID
+}
+
+type GovernmentFacility {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  type: GovernmentFacilityType!
+  location: Location!
+  actors(where: GovernmentActorWhereInput, orderBy: GovernmentActorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentActor!]
+  phone: PhoneNumber
+  fax: PhoneNumber
+  email: EmailAddress
+  url: ExternalLink
+  metadata: FacilityMetadata!
+}
+
+type GovernmentFacilityConnection {
+  pageInfo: PageInfo!
+  edges: [GovernmentFacilityEdge]!
+  aggregate: AggregateGovernmentFacility!
+}
+
+input GovernmentFacilityCreateInput {
+  id: ID
+  name: String
+  type: GovernmentFacilityType!
+  location: LocationCreateOneInput!
+  actors: GovernmentActorCreateManyInput
+  phone: PhoneNumberCreateOneInput
+  fax: PhoneNumberCreateOneInput
+  email: EmailAddressCreateOneInput
+  url: ExternalLinkCreateOneInput
+  metadata: FacilityMetadataCreateOneInput!
+}
+
+input GovernmentFacilityCreateManyInput {
+  create: [GovernmentFacilityCreateInput!]
+  connect: [GovernmentFacilityWhereUniqueInput!]
+}
+
+type GovernmentFacilityEdge {
+  node: GovernmentFacility!
+  cursor: String!
+}
+
+enum GovernmentFacilityOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  name_ASC
+  name_DESC
+  type_ASC
+  type_DESC
+}
+
+type GovernmentFacilityPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  type: GovernmentFacilityType!
+}
+
+input GovernmentFacilityScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  type: GovernmentFacilityType
+  type_not: GovernmentFacilityType
+  type_in: [GovernmentFacilityType!]
+  type_not_in: [GovernmentFacilityType!]
+  AND: [GovernmentFacilityScalarWhereInput!]
+  OR: [GovernmentFacilityScalarWhereInput!]
+  NOT: [GovernmentFacilityScalarWhereInput!]
+}
+
+type GovernmentFacilitySubscriptionPayload {
+  mutation: MutationType!
+  node: GovernmentFacility
+  updatedFields: [String!]
+  previousValues: GovernmentFacilityPreviousValues
+}
+
+input GovernmentFacilitySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GovernmentFacilityWhereInput
+  AND: [GovernmentFacilitySubscriptionWhereInput!]
+  OR: [GovernmentFacilitySubscriptionWhereInput!]
+  NOT: [GovernmentFacilitySubscriptionWhereInput!]
+}
+
+enum GovernmentFacilityType {
+  DETENTION_CENTER
+  FIELD_OFFICE
+  COURT
+}
+
+input GovernmentFacilityUpdateDataInput {
+  name: String
+  type: GovernmentFacilityType
+  location: LocationUpdateOneRequiredInput
+  actors: GovernmentActorUpdateManyInput
+  phone: PhoneNumberUpdateOneInput
+  fax: PhoneNumberUpdateOneInput
+  email: EmailAddressUpdateOneInput
+  url: ExternalLinkUpdateOneInput
+  metadata: FacilityMetadataUpdateOneRequiredInput
+}
+
+input GovernmentFacilityUpdateInput {
+  name: String
+  type: GovernmentFacilityType
+  location: LocationUpdateOneRequiredInput
+  actors: GovernmentActorUpdateManyInput
+  phone: PhoneNumberUpdateOneInput
+  fax: PhoneNumberUpdateOneInput
+  email: EmailAddressUpdateOneInput
+  url: ExternalLinkUpdateOneInput
+  metadata: FacilityMetadataUpdateOneRequiredInput
+}
+
+input GovernmentFacilityUpdateManyDataInput {
+  name: String
+  type: GovernmentFacilityType
+}
+
+input GovernmentFacilityUpdateManyInput {
+  create: [GovernmentFacilityCreateInput!]
+  update: [GovernmentFacilityUpdateWithWhereUniqueNestedInput!]
+  upsert: [GovernmentFacilityUpsertWithWhereUniqueNestedInput!]
+  delete: [GovernmentFacilityWhereUniqueInput!]
+  connect: [GovernmentFacilityWhereUniqueInput!]
+  set: [GovernmentFacilityWhereUniqueInput!]
+  disconnect: [GovernmentFacilityWhereUniqueInput!]
+  deleteMany: [GovernmentFacilityScalarWhereInput!]
+  updateMany: [GovernmentFacilityUpdateManyWithWhereNestedInput!]
+}
+
+input GovernmentFacilityUpdateManyMutationInput {
+  name: String
+  type: GovernmentFacilityType
+}
+
+input GovernmentFacilityUpdateManyWithWhereNestedInput {
+  where: GovernmentFacilityScalarWhereInput!
+  data: GovernmentFacilityUpdateManyDataInput!
+}
+
+input GovernmentFacilityUpdateWithWhereUniqueNestedInput {
+  where: GovernmentFacilityWhereUniqueInput!
+  data: GovernmentFacilityUpdateDataInput!
+}
+
+input GovernmentFacilityUpsertWithWhereUniqueNestedInput {
+  where: GovernmentFacilityWhereUniqueInput!
+  update: GovernmentFacilityUpdateDataInput!
+  create: GovernmentFacilityCreateInput!
+}
+
+input GovernmentFacilityWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  type: GovernmentFacilityType
+  type_not: GovernmentFacilityType
+  type_in: [GovernmentFacilityType!]
+  type_not_in: [GovernmentFacilityType!]
+  location: LocationWhereInput
+  actors_every: GovernmentActorWhereInput
+  actors_some: GovernmentActorWhereInput
+  actors_none: GovernmentActorWhereInput
+  phone: PhoneNumberWhereInput
+  fax: PhoneNumberWhereInput
+  email: EmailAddressWhereInput
+  url: ExternalLinkWhereInput
+  metadata: FacilityMetadataWhereInput
+  AND: [GovernmentFacilityWhereInput!]
+  OR: [GovernmentFacilityWhereInput!]
+  NOT: [GovernmentFacilityWhereInput!]
+}
+
+input GovernmentFacilityWhereUniqueInput {
+  id: ID
+}
+
+scalar Json
+
+type Location {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  formatted_address: String
+  googleId: String
+  placeId: String
+  location: Geometry
+  metadata: LocationMetadata!
+}
+
+type LocationConnection {
+  pageInfo: PageInfo!
+  edges: [LocationEdge]!
+  aggregate: AggregateLocation!
+}
+
+input LocationCreateInput {
+  id: ID
+  formatted_address: String
+  googleId: String
+  placeId: String
+  location: GeometryCreateOneInput
+  metadata: LocationMetadataCreateOneInput!
+}
+
+input LocationCreateOneInput {
+  create: LocationCreateInput
+  connect: LocationWhereUniqueInput
+}
+
+type LocationEdge {
+  node: Location!
+  cursor: String!
+}
+
+type LocationMetadata {
+  id: ID!
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+type LocationMetadataConnection {
+  pageInfo: PageInfo!
+  edges: [LocationMetadataEdge]!
+  aggregate: AggregateLocationMetadata!
+}
+
+input LocationMetadataCreateInput {
+  id: ID
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input LocationMetadataCreateOneInput {
+  create: LocationMetadataCreateInput
+  connect: LocationMetadataWhereUniqueInput
+}
+
+type LocationMetadataEdge {
+  node: LocationMetadata!
+  cursor: String!
+}
+
+enum LocationMetadataOrderByInput {
+  id_ASC
+  id_DESC
+  isPrimary_ASC
+  isPrimary_DESC
+  isPublic_ASC
+  isPublic_DESC
+  isVerified_ASC
+  isVerified_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type LocationMetadataPreviousValues {
+  id: ID!
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+type LocationMetadataSubscriptionPayload {
+  mutation: MutationType!
+  node: LocationMetadata
+  updatedFields: [String!]
+  previousValues: LocationMetadataPreviousValues
+}
+
+input LocationMetadataSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LocationMetadataWhereInput
+  AND: [LocationMetadataSubscriptionWhereInput!]
+  OR: [LocationMetadataSubscriptionWhereInput!]
+  NOT: [LocationMetadataSubscriptionWhereInput!]
+}
+
+input LocationMetadataUpdateDataInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input LocationMetadataUpdateInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input LocationMetadataUpdateManyMutationInput {
+  isPrimary: Boolean
+  isPublic: Boolean
+  isVerified: Boolean
+}
+
+input LocationMetadataUpdateOneRequiredInput {
+  create: LocationMetadataCreateInput
+  update: LocationMetadataUpdateDataInput
+  upsert: LocationMetadataUpsertNestedInput
+  connect: LocationMetadataWhereUniqueInput
+}
+
+input LocationMetadataUpsertNestedInput {
+  update: LocationMetadataUpdateDataInput!
+  create: LocationMetadataCreateInput!
+}
+
+input LocationMetadataWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  isPrimary: Boolean
+  isPrimary_not: Boolean
+  isPublic: Boolean
+  isPublic_not: Boolean
+  isVerified: Boolean
+  isVerified_not: Boolean
+  AND: [LocationMetadataWhereInput!]
+  OR: [LocationMetadataWhereInput!]
+  NOT: [LocationMetadataWhereInput!]
+}
+
+input LocationMetadataWhereUniqueInput {
+  id: ID
+}
+
+enum LocationOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  formatted_address_ASC
+  formatted_address_DESC
+  googleId_ASC
+  googleId_DESC
+  placeId_ASC
+  placeId_DESC
+}
+
+type LocationPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  formatted_address: String
+  googleId: String
+  placeId: String
+}
+
+type LocationSubscriptionPayload {
+  mutation: MutationType!
+  node: Location
+  updatedFields: [String!]
+  previousValues: LocationPreviousValues
+}
+
+input LocationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: LocationWhereInput
+  AND: [LocationSubscriptionWhereInput!]
+  OR: [LocationSubscriptionWhereInput!]
+  NOT: [LocationSubscriptionWhereInput!]
+}
+
+input LocationUpdateDataInput {
+  formatted_address: String
+  googleId: String
+  placeId: String
+  location: GeometryUpdateOneInput
+  metadata: LocationMetadataUpdateOneRequiredInput
+}
+
+input LocationUpdateInput {
+  formatted_address: String
+  googleId: String
+  placeId: String
+  location: GeometryUpdateOneInput
+  metadata: LocationMetadataUpdateOneRequiredInput
+}
+
+input LocationUpdateManyMutationInput {
+  formatted_address: String
+  googleId: String
+  placeId: String
+}
+
+input LocationUpdateOneRequiredInput {
+  create: LocationCreateInput
+  update: LocationUpdateDataInput
+  upsert: LocationUpsertNestedInput
+  connect: LocationWhereUniqueInput
+}
+
+input LocationUpsertNestedInput {
+  update: LocationUpdateDataInput!
+  create: LocationCreateInput!
+}
+
+input LocationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  formatted_address: String
+  formatted_address_not: String
+  formatted_address_in: [String!]
+  formatted_address_not_in: [String!]
+  formatted_address_lt: String
+  formatted_address_lte: String
+  formatted_address_gt: String
+  formatted_address_gte: String
+  formatted_address_contains: String
+  formatted_address_not_contains: String
+  formatted_address_starts_with: String
+  formatted_address_not_starts_with: String
+  formatted_address_ends_with: String
+  formatted_address_not_ends_with: String
+  googleId: String
+  googleId_not: String
+  googleId_in: [String!]
+  googleId_not_in: [String!]
+  googleId_lt: String
+  googleId_lte: String
+  googleId_gt: String
+  googleId_gte: String
+  googleId_contains: String
+  googleId_not_contains: String
+  googleId_starts_with: String
+  googleId_not_starts_with: String
+  googleId_ends_with: String
+  googleId_not_ends_with: String
+  placeId: String
+  placeId_not: String
+  placeId_in: [String!]
+  placeId_not_in: [String!]
+  placeId_lt: String
+  placeId_lte: String
+  placeId_gt: String
+  placeId_gte: String
+  placeId_contains: String
+  placeId_not_contains: String
+  placeId_starts_with: String
+  placeId_not_starts_with: String
+  placeId_ends_with: String
+  placeId_not_ends_with: String
+  location: GeometryWhereInput
+  metadata: LocationMetadataWhereInput
+  AND: [LocationWhereInput!]
+  OR: [LocationWhereInput!]
+  NOT: [LocationWhereInput!]
+}
+
+input LocationWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type Mutation {
+  createAffiliation(data: AffiliationCreateInput!): Affiliation!
+  updateAffiliation(data: AffiliationUpdateInput!, where: AffiliationWhereUniqueInput!): Affiliation
+  updateManyAffiliations(data: AffiliationUpdateManyMutationInput!, where: AffiliationWhereInput): BatchPayload!
+  upsertAffiliation(where: AffiliationWhereUniqueInput!, create: AffiliationCreateInput!, update: AffiliationUpdateInput!): Affiliation!
+  deleteAffiliation(where: AffiliationWhereUniqueInput!): Affiliation
+  deleteManyAffiliations(where: AffiliationWhereInput): BatchPayload!
+  createAffiliationRole(data: AffiliationRoleCreateInput!): AffiliationRole!
+  updateAffiliationRole(data: AffiliationRoleUpdateInput!, where: AffiliationRoleWhereUniqueInput!): AffiliationRole
+  updateManyAffiliationRoles(data: AffiliationRoleUpdateManyMutationInput!, where: AffiliationRoleWhereInput): BatchPayload!
+  upsertAffiliationRole(where: AffiliationRoleWhereUniqueInput!, create: AffiliationRoleCreateInput!, update: AffiliationRoleUpdateInput!): AffiliationRole!
+  deleteAffiliationRole(where: AffiliationRoleWhereUniqueInput!): AffiliationRole
+  deleteManyAffiliationRoles(where: AffiliationRoleWhereInput): BatchPayload!
+  createContactMetadata(data: ContactMetadataCreateInput!): ContactMetadata!
+  updateContactMetadata(data: ContactMetadataUpdateInput!, where: ContactMetadataWhereUniqueInput!): ContactMetadata
+  updateManyContactMetadatas(data: ContactMetadataUpdateManyMutationInput!, where: ContactMetadataWhereInput): BatchPayload!
+  upsertContactMetadata(where: ContactMetadataWhereUniqueInput!, create: ContactMetadataCreateInput!, update: ContactMetadataUpdateInput!): ContactMetadata!
+  deleteContactMetadata(where: ContactMetadataWhereUniqueInput!): ContactMetadata
+  deleteManyContactMetadatas(where: ContactMetadataWhereInput): BatchPayload!
+  createEmailAddress(data: EmailAddressCreateInput!): EmailAddress!
+  updateEmailAddress(data: EmailAddressUpdateInput!, where: EmailAddressWhereUniqueInput!): EmailAddress
+  updateManyEmailAddresses(data: EmailAddressUpdateManyMutationInput!, where: EmailAddressWhereInput): BatchPayload!
+  upsertEmailAddress(where: EmailAddressWhereUniqueInput!, create: EmailAddressCreateInput!, update: EmailAddressUpdateInput!): EmailAddress!
+  deleteEmailAddress(where: EmailAddressWhereUniqueInput!): EmailAddress
+  deleteManyEmailAddresses(where: EmailAddressWhereInput): BatchPayload!
+  createExternalLink(data: ExternalLinkCreateInput!): ExternalLink!
+  updateExternalLink(data: ExternalLinkUpdateInput!, where: ExternalLinkWhereUniqueInput!): ExternalLink
+  updateManyExternalLinks(data: ExternalLinkUpdateManyMutationInput!, where: ExternalLinkWhereInput): BatchPayload!
+  upsertExternalLink(where: ExternalLinkWhereUniqueInput!, create: ExternalLinkCreateInput!, update: ExternalLinkUpdateInput!): ExternalLink!
+  deleteExternalLink(where: ExternalLinkWhereUniqueInput!): ExternalLink
+  deleteManyExternalLinks(where: ExternalLinkWhereInput): BatchPayload!
+  createFacilityMetadata(data: FacilityMetadataCreateInput!): FacilityMetadata!
+  updateFacilityMetadata(data: FacilityMetadataUpdateInput!, where: FacilityMetadataWhereUniqueInput!): FacilityMetadata
+  updateManyFacilityMetadatas(data: FacilityMetadataUpdateManyMutationInput!, where: FacilityMetadataWhereInput): BatchPayload!
+  upsertFacilityMetadata(where: FacilityMetadataWhereUniqueInput!, create: FacilityMetadataCreateInput!, update: FacilityMetadataUpdateInput!): FacilityMetadata!
+  deleteFacilityMetadata(where: FacilityMetadataWhereUniqueInput!): FacilityMetadata
+  deleteManyFacilityMetadatas(where: FacilityMetadataWhereInput): BatchPayload!
+  createGeometry(data: GeometryCreateInput!): Geometry!
+  updateGeometry(data: GeometryUpdateInput!, where: GeometryWhereUniqueInput!): Geometry
+  updateManyGeometries(data: GeometryUpdateManyMutationInput!, where: GeometryWhereInput): BatchPayload!
+  upsertGeometry(where: GeometryWhereUniqueInput!, create: GeometryCreateInput!, update: GeometryUpdateInput!): Geometry!
+  deleteGeometry(where: GeometryWhereUniqueInput!): Geometry
+  deleteManyGeometries(where: GeometryWhereInput): BatchPayload!
+  createGovernmentActor(data: GovernmentActorCreateInput!): GovernmentActor!
+  updateGovernmentActor(data: GovernmentActorUpdateInput!, where: GovernmentActorWhereUniqueInput!): GovernmentActor
+  upsertGovernmentActor(where: GovernmentActorWhereUniqueInput!, create: GovernmentActorCreateInput!, update: GovernmentActorUpdateInput!): GovernmentActor!
+  deleteGovernmentActor(where: GovernmentActorWhereUniqueInput!): GovernmentActor
+  deleteManyGovernmentActors(where: GovernmentActorWhereInput): BatchPayload!
+  createGovernmentActorProfile(data: GovernmentActorProfileCreateInput!): GovernmentActorProfile!
+  updateGovernmentActorProfile(data: GovernmentActorProfileUpdateInput!, where: GovernmentActorProfileWhereUniqueInput!): GovernmentActorProfile
+  updateManyGovernmentActorProfiles(data: GovernmentActorProfileUpdateManyMutationInput!, where: GovernmentActorProfileWhereInput): BatchPayload!
+  upsertGovernmentActorProfile(where: GovernmentActorProfileWhereUniqueInput!, create: GovernmentActorProfileCreateInput!, update: GovernmentActorProfileUpdateInput!): GovernmentActorProfile!
+  deleteGovernmentActorProfile(where: GovernmentActorProfileWhereUniqueInput!): GovernmentActorProfile
+  deleteManyGovernmentActorProfiles(where: GovernmentActorProfileWhereInput): BatchPayload!
+  createGovernmentBody(data: GovernmentBodyCreateInput!): GovernmentBody!
+  updateGovernmentBody(data: GovernmentBodyUpdateInput!, where: GovernmentBodyWhereUniqueInput!): GovernmentBody
+  upsertGovernmentBody(where: GovernmentBodyWhereUniqueInput!, create: GovernmentBodyCreateInput!, update: GovernmentBodyUpdateInput!): GovernmentBody!
+  deleteGovernmentBody(where: GovernmentBodyWhereUniqueInput!): GovernmentBody
+  deleteManyGovernmentBodies(where: GovernmentBodyWhereInput): BatchPayload!
+  createGovernmentBodyMetadata(data: GovernmentBodyMetadataCreateInput!): GovernmentBodyMetadata!
+  updateGovernmentBodyMetadata(data: GovernmentBodyMetadataUpdateInput!, where: GovernmentBodyMetadataWhereUniqueInput!): GovernmentBodyMetadata
+  updateManyGovernmentBodyMetadatas(data: GovernmentBodyMetadataUpdateManyMutationInput!, where: GovernmentBodyMetadataWhereInput): BatchPayload!
+  upsertGovernmentBodyMetadata(where: GovernmentBodyMetadataWhereUniqueInput!, create: GovernmentBodyMetadataCreateInput!, update: GovernmentBodyMetadataUpdateInput!): GovernmentBodyMetadata!
+  deleteGovernmentBodyMetadata(where: GovernmentBodyMetadataWhereUniqueInput!): GovernmentBodyMetadata
+  deleteManyGovernmentBodyMetadatas(where: GovernmentBodyMetadataWhereInput): BatchPayload!
+  createGovernmentFacility(data: GovernmentFacilityCreateInput!): GovernmentFacility!
+  updateGovernmentFacility(data: GovernmentFacilityUpdateInput!, where: GovernmentFacilityWhereUniqueInput!): GovernmentFacility
+  updateManyGovernmentFacilities(data: GovernmentFacilityUpdateManyMutationInput!, where: GovernmentFacilityWhereInput): BatchPayload!
+  upsertGovernmentFacility(where: GovernmentFacilityWhereUniqueInput!, create: GovernmentFacilityCreateInput!, update: GovernmentFacilityUpdateInput!): GovernmentFacility!
+  deleteGovernmentFacility(where: GovernmentFacilityWhereUniqueInput!): GovernmentFacility
+  deleteManyGovernmentFacilities(where: GovernmentFacilityWhereInput): BatchPayload!
+  createLocation(data: LocationCreateInput!): Location!
+  updateLocation(data: LocationUpdateInput!, where: LocationWhereUniqueInput!): Location
+  updateManyLocations(data: LocationUpdateManyMutationInput!, where: LocationWhereInput): BatchPayload!
+  upsertLocation(where: LocationWhereUniqueInput!, create: LocationCreateInput!, update: LocationUpdateInput!): Location!
+  deleteLocation(where: LocationWhereUniqueInput!): Location
+  deleteManyLocations(where: LocationWhereInput): BatchPayload!
+  createLocationMetadata(data: LocationMetadataCreateInput!): LocationMetadata!
+  updateLocationMetadata(data: LocationMetadataUpdateInput!, where: LocationMetadataWhereUniqueInput!): LocationMetadata
+  updateManyLocationMetadatas(data: LocationMetadataUpdateManyMutationInput!, where: LocationMetadataWhereInput): BatchPayload!
+  upsertLocationMetadata(where: LocationMetadataWhereUniqueInput!, create: LocationMetadataCreateInput!, update: LocationMetadataUpdateInput!): LocationMetadata!
+  deleteLocationMetadata(where: LocationMetadataWhereUniqueInput!): LocationMetadata
+  deleteManyLocationMetadatas(where: LocationMetadataWhereInput): BatchPayload!
+  createPhoneNumber(data: PhoneNumberCreateInput!): PhoneNumber!
+  updatePhoneNumber(data: PhoneNumberUpdateInput!, where: PhoneNumberWhereUniqueInput!): PhoneNumber
+  updateManyPhoneNumbers(data: PhoneNumberUpdateManyMutationInput!, where: PhoneNumberWhereInput): BatchPayload!
+  upsertPhoneNumber(where: PhoneNumberWhereUniqueInput!, create: PhoneNumberCreateInput!, update: PhoneNumberUpdateInput!): PhoneNumber!
+  deletePhoneNumber(where: PhoneNumberWhereUniqueInput!): PhoneNumber
+  deleteManyPhoneNumbers(where: PhoneNumberWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createUserProfile(data: UserProfileCreateInput!): UserProfile!
+  updateUserProfile(data: UserProfileUpdateInput!, where: UserProfileWhereUniqueInput!): UserProfile
+  updateManyUserProfiles(data: UserProfileUpdateManyMutationInput!, where: UserProfileWhereInput): BatchPayload!
+  upsertUserProfile(where: UserProfileWhereUniqueInput!, create: UserProfileCreateInput!, update: UserProfileUpdateInput!): UserProfile!
+  deleteUserProfile(where: UserProfileWhereUniqueInput!): UserProfile
+  deleteManyUserProfiles(where: UserProfileWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type PhoneNumber {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  payload: String!
+  metadata: ContactMetadata!
+}
+
+type PhoneNumberConnection {
+  pageInfo: PageInfo!
+  edges: [PhoneNumberEdge]!
+  aggregate: AggregatePhoneNumber!
+}
+
+input PhoneNumberCreateInput {
+  id: ID
+  payload: String!
+  metadata: ContactMetadataCreateOneInput!
+}
+
+input PhoneNumberCreateManyInput {
+  create: [PhoneNumberCreateInput!]
+  connect: [PhoneNumberWhereUniqueInput!]
+}
+
+input PhoneNumberCreateOneInput {
+  create: PhoneNumberCreateInput
+  connect: PhoneNumberWhereUniqueInput
+}
+
+type PhoneNumberEdge {
+  node: PhoneNumber!
+  cursor: String!
+}
+
+enum PhoneNumberOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  payload_ASC
+  payload_DESC
+}
+
+type PhoneNumberPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  payload: String!
+}
+
+input PhoneNumberScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  payload: String
+  payload_not: String
+  payload_in: [String!]
+  payload_not_in: [String!]
+  payload_lt: String
+  payload_lte: String
+  payload_gt: String
+  payload_gte: String
+  payload_contains: String
+  payload_not_contains: String
+  payload_starts_with: String
+  payload_not_starts_with: String
+  payload_ends_with: String
+  payload_not_ends_with: String
+  AND: [PhoneNumberScalarWhereInput!]
+  OR: [PhoneNumberScalarWhereInput!]
+  NOT: [PhoneNumberScalarWhereInput!]
+}
+
+type PhoneNumberSubscriptionPayload {
+  mutation: MutationType!
+  node: PhoneNumber
+  updatedFields: [String!]
+  previousValues: PhoneNumberPreviousValues
+}
+
+input PhoneNumberSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PhoneNumberWhereInput
+  AND: [PhoneNumberSubscriptionWhereInput!]
+  OR: [PhoneNumberSubscriptionWhereInput!]
+  NOT: [PhoneNumberSubscriptionWhereInput!]
+}
+
+input PhoneNumberUpdateDataInput {
+  payload: String
+  metadata: ContactMetadataUpdateOneRequiredInput
+}
+
+input PhoneNumberUpdateInput {
+  payload: String
+  metadata: ContactMetadataUpdateOneRequiredInput
+}
+
+input PhoneNumberUpdateManyDataInput {
+  payload: String
+}
+
+input PhoneNumberUpdateManyInput {
+  create: [PhoneNumberCreateInput!]
+  update: [PhoneNumberUpdateWithWhereUniqueNestedInput!]
+  upsert: [PhoneNumberUpsertWithWhereUniqueNestedInput!]
+  delete: [PhoneNumberWhereUniqueInput!]
+  connect: [PhoneNumberWhereUniqueInput!]
+  set: [PhoneNumberWhereUniqueInput!]
+  disconnect: [PhoneNumberWhereUniqueInput!]
+  deleteMany: [PhoneNumberScalarWhereInput!]
+  updateMany: [PhoneNumberUpdateManyWithWhereNestedInput!]
+}
+
+input PhoneNumberUpdateManyMutationInput {
+  payload: String
+}
+
+input PhoneNumberUpdateManyWithWhereNestedInput {
+  where: PhoneNumberScalarWhereInput!
+  data: PhoneNumberUpdateManyDataInput!
+}
+
+input PhoneNumberUpdateOneInput {
+  create: PhoneNumberCreateInput
+  update: PhoneNumberUpdateDataInput
+  upsert: PhoneNumberUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PhoneNumberWhereUniqueInput
+}
+
+input PhoneNumberUpdateWithWhereUniqueNestedInput {
+  where: PhoneNumberWhereUniqueInput!
+  data: PhoneNumberUpdateDataInput!
+}
+
+input PhoneNumberUpsertNestedInput {
+  update: PhoneNumberUpdateDataInput!
+  create: PhoneNumberCreateInput!
+}
+
+input PhoneNumberUpsertWithWhereUniqueNestedInput {
+  where: PhoneNumberWhereUniqueInput!
+  update: PhoneNumberUpdateDataInput!
+  create: PhoneNumberCreateInput!
+}
+
+input PhoneNumberWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  payload: String
+  payload_not: String
+  payload_in: [String!]
+  payload_not_in: [String!]
+  payload_lt: String
+  payload_lte: String
+  payload_gt: String
+  payload_gte: String
+  payload_contains: String
+  payload_not_contains: String
+  payload_starts_with: String
+  payload_not_starts_with: String
+  payload_ends_with: String
+  payload_not_ends_with: String
+  metadata: ContactMetadataWhereInput
+  AND: [PhoneNumberWhereInput!]
+  OR: [PhoneNumberWhereInput!]
+  NOT: [PhoneNumberWhereInput!]
+}
+
+input PhoneNumberWhereUniqueInput {
+  id: ID
+  payload: String
+}
+
+type Query {
+  affiliation(where: AffiliationWhereUniqueInput!): Affiliation
+  affiliations(where: AffiliationWhereInput, orderBy: AffiliationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Affiliation]!
+  affiliationsConnection(where: AffiliationWhereInput, orderBy: AffiliationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AffiliationConnection!
+  affiliationRole(where: AffiliationRoleWhereUniqueInput!): AffiliationRole
+  affiliationRoles(where: AffiliationRoleWhereInput, orderBy: AffiliationRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AffiliationRole]!
+  affiliationRolesConnection(where: AffiliationRoleWhereInput, orderBy: AffiliationRoleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AffiliationRoleConnection!
+  contactMetadata(where: ContactMetadataWhereUniqueInput!): ContactMetadata
+  contactMetadatas(where: ContactMetadataWhereInput, orderBy: ContactMetadataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ContactMetadata]!
+  contactMetadatasConnection(where: ContactMetadataWhereInput, orderBy: ContactMetadataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContactMetadataConnection!
+  emailAddress(where: EmailAddressWhereUniqueInput!): EmailAddress
+  emailAddresses(where: EmailAddressWhereInput, orderBy: EmailAddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EmailAddress]!
+  emailAddressesConnection(where: EmailAddressWhereInput, orderBy: EmailAddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EmailAddressConnection!
+  externalLink(where: ExternalLinkWhereUniqueInput!): ExternalLink
+  externalLinks(where: ExternalLinkWhereInput, orderBy: ExternalLinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ExternalLink]!
+  externalLinksConnection(where: ExternalLinkWhereInput, orderBy: ExternalLinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExternalLinkConnection!
+  facilityMetadata(where: FacilityMetadataWhereUniqueInput!): FacilityMetadata
+  facilityMetadatas(where: FacilityMetadataWhereInput, orderBy: FacilityMetadataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FacilityMetadata]!
+  facilityMetadatasConnection(where: FacilityMetadataWhereInput, orderBy: FacilityMetadataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FacilityMetadataConnection!
+  geometry(where: GeometryWhereUniqueInput!): Geometry
+  geometries(where: GeometryWhereInput, orderBy: GeometryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Geometry]!
+  geometriesConnection(where: GeometryWhereInput, orderBy: GeometryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GeometryConnection!
+  governmentActor(where: GovernmentActorWhereUniqueInput!): GovernmentActor
+  governmentActors(where: GovernmentActorWhereInput, orderBy: GovernmentActorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentActor]!
+  governmentActorsConnection(where: GovernmentActorWhereInput, orderBy: GovernmentActorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GovernmentActorConnection!
+  governmentActorProfile(where: GovernmentActorProfileWhereUniqueInput!): GovernmentActorProfile
+  governmentActorProfiles(where: GovernmentActorProfileWhereInput, orderBy: GovernmentActorProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentActorProfile]!
+  governmentActorProfilesConnection(where: GovernmentActorProfileWhereInput, orderBy: GovernmentActorProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GovernmentActorProfileConnection!
+  governmentBody(where: GovernmentBodyWhereUniqueInput!): GovernmentBody
+  governmentBodies(where: GovernmentBodyWhereInput, orderBy: GovernmentBodyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentBody]!
+  governmentBodiesConnection(where: GovernmentBodyWhereInput, orderBy: GovernmentBodyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GovernmentBodyConnection!
+  governmentBodyMetadata(where: GovernmentBodyMetadataWhereUniqueInput!): GovernmentBodyMetadata
+  governmentBodyMetadatas(where: GovernmentBodyMetadataWhereInput, orderBy: GovernmentBodyMetadataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentBodyMetadata]!
+  governmentBodyMetadatasConnection(where: GovernmentBodyMetadataWhereInput, orderBy: GovernmentBodyMetadataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GovernmentBodyMetadataConnection!
+  governmentFacility(where: GovernmentFacilityWhereUniqueInput!): GovernmentFacility
+  governmentFacilities(where: GovernmentFacilityWhereInput, orderBy: GovernmentFacilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentFacility]!
+  governmentFacilitiesConnection(where: GovernmentFacilityWhereInput, orderBy: GovernmentFacilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GovernmentFacilityConnection!
+  location(where: LocationWhereUniqueInput!): Location
+  locations(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Location]!
+  locationsConnection(where: LocationWhereInput, orderBy: LocationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationConnection!
+  locationMetadata(where: LocationMetadataWhereUniqueInput!): LocationMetadata
+  locationMetadatas(where: LocationMetadataWhereInput, orderBy: LocationMetadataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LocationMetadata]!
+  locationMetadatasConnection(where: LocationMetadataWhereInput, orderBy: LocationMetadataOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LocationMetadataConnection!
+  phoneNumber(where: PhoneNumberWhereUniqueInput!): PhoneNumber
+  phoneNumbers(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PhoneNumber]!
+  phoneNumbersConnection(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PhoneNumberConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  userProfile(where: UserProfileWhereUniqueInput!): UserProfile
+  userProfiles(where: UserProfileWhereInput, orderBy: UserProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserProfile]!
+  userProfilesConnection(where: UserProfileWhereInput, orderBy: UserProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserProfileConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  affiliation(where: AffiliationSubscriptionWhereInput): AffiliationSubscriptionPayload
+  affiliationRole(where: AffiliationRoleSubscriptionWhereInput): AffiliationRoleSubscriptionPayload
+  contactMetadata(where: ContactMetadataSubscriptionWhereInput): ContactMetadataSubscriptionPayload
+  emailAddress(where: EmailAddressSubscriptionWhereInput): EmailAddressSubscriptionPayload
+  externalLink(where: ExternalLinkSubscriptionWhereInput): ExternalLinkSubscriptionPayload
+  facilityMetadata(where: FacilityMetadataSubscriptionWhereInput): FacilityMetadataSubscriptionPayload
+  geometry(where: GeometrySubscriptionWhereInput): GeometrySubscriptionPayload
+  governmentActor(where: GovernmentActorSubscriptionWhereInput): GovernmentActorSubscriptionPayload
+  governmentActorProfile(where: GovernmentActorProfileSubscriptionWhereInput): GovernmentActorProfileSubscriptionPayload
+  governmentBody(where: GovernmentBodySubscriptionWhereInput): GovernmentBodySubscriptionPayload
+  governmentBodyMetadata(where: GovernmentBodyMetadataSubscriptionWhereInput): GovernmentBodyMetadataSubscriptionPayload
+  governmentFacility(where: GovernmentFacilitySubscriptionWhereInput): GovernmentFacilitySubscriptionPayload
+  location(where: LocationSubscriptionWhereInput): LocationSubscriptionPayload
+  locationMetadata(where: LocationMetadataSubscriptionWhereInput): LocationMetadataSubscriptionPayload
+  phoneNumber(where: PhoneNumberSubscriptionWhereInput): PhoneNumberSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  userProfile(where: UserProfileSubscriptionWhereInput): UserProfileSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  handle: String
+  cognitoId: String!
+  profile: UserProfile!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  handle: String
+  cognitoId: String!
+  profile: UserProfileCreateOneWithoutUserInput!
+}
+
+input UserCreateOneWithoutProfileInput {
+  create: UserCreateWithoutProfileInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutProfileInput {
+  id: ID
+  handle: String
+  cognitoId: String!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  handle_ASC
+  handle_DESC
+  cognitoId_ASC
+  cognitoId_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  handle: String
+  cognitoId: String!
+}
+
+type UserProfile {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  firstName: String
+  lastName: String
+  avatar: String
+  location: String
+  email(where: EmailAddressWhereInput, orderBy: EmailAddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EmailAddress!]
+  phone_number(where: PhoneNumberWhereInput, orderBy: PhoneNumberOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PhoneNumber!]
+}
+
+type UserProfileConnection {
+  pageInfo: PageInfo!
+  edges: [UserProfileEdge]!
+  aggregate: AggregateUserProfile!
+}
+
+input UserProfileCreateInput {
+  id: ID
+  user: UserCreateOneWithoutProfileInput!
+  firstName: String
+  lastName: String
+  avatar: String
+  location: String
+  email: EmailAddressCreateManyInput
+  phone_number: PhoneNumberCreateManyInput
+}
+
+input UserProfileCreateOneWithoutUserInput {
+  create: UserProfileCreateWithoutUserInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileCreateWithoutUserInput {
+  id: ID
+  firstName: String
+  lastName: String
+  avatar: String
+  location: String
+  email: EmailAddressCreateManyInput
+  phone_number: PhoneNumberCreateManyInput
+}
+
+type UserProfileEdge {
+  node: UserProfile!
+  cursor: String!
+}
+
+enum UserProfileOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  avatar_ASC
+  avatar_DESC
+  location_ASC
+  location_DESC
+}
+
+type UserProfilePreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  firstName: String
+  lastName: String
+  avatar: String
+  location: String
+}
+
+type UserProfileSubscriptionPayload {
+  mutation: MutationType!
+  node: UserProfile
+  updatedFields: [String!]
+  previousValues: UserProfilePreviousValues
+}
+
+input UserProfileSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserProfileWhereInput
+  AND: [UserProfileSubscriptionWhereInput!]
+  OR: [UserProfileSubscriptionWhereInput!]
+  NOT: [UserProfileSubscriptionWhereInput!]
+}
+
+input UserProfileUpdateInput {
+  user: UserUpdateOneRequiredWithoutProfileInput
+  firstName: String
+  lastName: String
+  avatar: String
+  location: String
+  email: EmailAddressUpdateManyInput
+  phone_number: PhoneNumberUpdateManyInput
+}
+
+input UserProfileUpdateManyMutationInput {
+  firstName: String
+  lastName: String
+  avatar: String
+  location: String
+}
+
+input UserProfileUpdateOneRequiredWithoutUserInput {
+  create: UserProfileCreateWithoutUserInput
+  update: UserProfileUpdateWithoutUserDataInput
+  upsert: UserProfileUpsertWithoutUserInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileUpdateWithoutUserDataInput {
+  firstName: String
+  lastName: String
+  avatar: String
+  location: String
+  email: EmailAddressUpdateManyInput
+  phone_number: PhoneNumberUpdateManyInput
+}
+
+input UserProfileUpsertWithoutUserInput {
+  update: UserProfileUpdateWithoutUserDataInput!
+  create: UserProfileCreateWithoutUserInput!
+}
+
+input UserProfileWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  user: UserWhereInput
+  firstName: String
+  firstName_not: String
+  firstName_in: [String!]
+  firstName_not_in: [String!]
+  firstName_lt: String
+  firstName_lte: String
+  firstName_gt: String
+  firstName_gte: String
+  firstName_contains: String
+  firstName_not_contains: String
+  firstName_starts_with: String
+  firstName_not_starts_with: String
+  firstName_ends_with: String
+  firstName_not_ends_with: String
+  lastName: String
+  lastName_not: String
+  lastName_in: [String!]
+  lastName_not_in: [String!]
+  lastName_lt: String
+  lastName_lte: String
+  lastName_gt: String
+  lastName_gte: String
+  lastName_contains: String
+  lastName_not_contains: String
+  lastName_starts_with: String
+  lastName_not_starts_with: String
+  lastName_ends_with: String
+  lastName_not_ends_with: String
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  location: String
+  location_not: String
+  location_in: [String!]
+  location_not_in: [String!]
+  location_lt: String
+  location_lte: String
+  location_gt: String
+  location_gte: String
+  location_contains: String
+  location_not_contains: String
+  location_starts_with: String
+  location_not_starts_with: String
+  location_ends_with: String
+  location_not_ends_with: String
+  email_every: EmailAddressWhereInput
+  email_some: EmailAddressWhereInput
+  email_none: EmailAddressWhereInput
+  phone_number_every: PhoneNumberWhereInput
+  phone_number_some: PhoneNumberWhereInput
+  phone_number_none: PhoneNumberWhereInput
+  AND: [UserProfileWhereInput!]
+  OR: [UserProfileWhereInput!]
+  NOT: [UserProfileWhereInput!]
+}
+
+input UserProfileWhereUniqueInput {
+  id: ID
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  handle: String
+  cognitoId: String
+  profile: UserProfileUpdateOneRequiredWithoutUserInput
+}
+
+input UserUpdateManyMutationInput {
+  handle: String
+  cognitoId: String
+}
+
+input UserUpdateOneRequiredWithoutProfileInput {
+  create: UserCreateWithoutProfileInput
+  update: UserUpdateWithoutProfileDataInput
+  upsert: UserUpsertWithoutProfileInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutProfileDataInput {
+  handle: String
+  cognitoId: String
+}
+
+input UserUpsertWithoutProfileInput {
+  update: UserUpdateWithoutProfileDataInput!
+  create: UserCreateWithoutProfileInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  handle: String
+  handle_not: String
+  handle_in: [String!]
+  handle_not_in: [String!]
+  handle_lt: String
+  handle_lte: String
+  handle_gt: String
+  handle_gte: String
+  handle_contains: String
+  handle_not_contains: String
+  handle_starts_with: String
+  handle_not_starts_with: String
+  handle_ends_with: String
+  handle_not_ends_with: String
+  cognitoId: String
+  cognitoId_not: String
+  cognitoId_in: [String!]
+  cognitoId_not_in: [String!]
+  cognitoId_lt: String
+  cognitoId_lte: String
+  cognitoId_gt: String
+  cognitoId_gte: String
+  cognitoId_contains: String
+  cognitoId_not_contains: String
+  cognitoId_starts_with: String
+  cognitoId_not_starts_with: String
+  cognitoId_ends_with: String
+  cognitoId_not_ends_with: String
+  profile: UserProfileWhereInput
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  handle: String
+  cognitoId: String
+}

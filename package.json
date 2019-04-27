@@ -8,11 +8,21 @@
     "start:web": "npx lerna run dev --scope=@sabemos/web"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/express": "^4.16.1",
+    "@types/graphql": "^14.2.0",
     "@types/node": "^11.13.7",
+    "@types/prettier": "^1.16.3",
+    "@types/redis": "^2.8.12",
     "cross-env": "^5.2.0",
     "husky": "^2.1.0",
     "lerna": "^3.13.4",
+    "nodemon": "^1.18.11",
     "prettier": "^1.17.0",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.4.5"
   }
 }

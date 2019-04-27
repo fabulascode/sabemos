@@ -1,0 +1,35 @@
+interface Facility {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  metadata: FacilityMetadata!
+  location: Location!
+}
+
+type GovernmentFacility implements Facility {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  name: String
+  type: GovernmentFacilityType!
+  location: Location!
+  actors: [GovernmentActor!]!
+  phone: PhoneNumber @relation(link: INLINE, name: "PhoneOnGovernmentFacility")
+  fax: PhoneNumber @relation(link: INLINE, name: "FaxOnGovernmentFacility")
+  email: EmailAddress @relation(link: INLINE, name: "EmailOnGovernmentFacility")
+  url: ExternalLink @relation(link: INLINE, name: "UrlOnGovernmentFacility")
+  metadata: FacilityMetadata!
+}
+
+enum GovernmentFacilityType {
+  DETENTION_CENTER
+  FIELD_OFFICE
+  COURT
+}
+
+type FacilityMetadata {
+  id: ID! @id
+  isPrimary: Boolean @default(value: false)
+  isPublic: Boolean @default(value: true)
+  isVerified: Boolean @default(value: false)
+}
