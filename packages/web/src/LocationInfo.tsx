@@ -1,10 +1,9 @@
 import React from "react";
 import { css } from "glamor";
 
-export default function LocationInfo({ name, tel, address, email }: any) {
+export default function LocationInfo({ name, tel, address, fax, email }: any) {
   const style = css({
-    padding: "1rem",
-    borderBottom: "1px black solid",
+    padding: "1rem 2rem",
     lineHeight: 1.25
   });
 
@@ -22,7 +21,7 @@ export default function LocationInfo({ name, tel, address, email }: any) {
       <h2 {...headingStyle}>{name}</h2>
       <div {...addressStyle}>
         <p>
-          {address.line1}, {address.line2}
+          {address.line1} {address.line2}
         </p>
         <p>
           {address.city}, {address.state} {address.zip}
@@ -31,6 +30,11 @@ export default function LocationInfo({ name, tel, address, email }: any) {
       {tel && (
         <p>
           Tel: <a href={"tel:" + tel}>{tel}</a>
+        </p>
+      )}
+      {fax && (
+        <p>
+          Fax: <a href={"tel:" + fax}>{fax}</a>
         </p>
       )}
       {email && (

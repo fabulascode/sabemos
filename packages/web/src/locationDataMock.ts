@@ -60,5 +60,17 @@ export default [
       }
     ],
     email: "Chicago.Outreach@ice.dhs.gov"
+  },
+  {
+    name: "ICE HSI - Chicago",
+    address: {
+      line1: "1 North Tower Lane",
+      line2: "Suite 1600",
+      city: "Oakbrook Terrace",
+      state: "IL",
+      zip: "60181"
+    },
+    tel: "(630) 574-4600",
+    fax: "(630) 574-2889"
   }
 ];
