@@ -1,26 +1,24 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import HomePage from "./HomePage";
+import LocationPage from "./LocationPage";
 
-const App: React.FC = () => {
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload. From docker.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route
+            path="/:locationId"
+            children={({ match }) => (
+              <LocationPage id={match!.params.locationId} />
+            )}
+          />
+        </Switch>
+      </div>
+    </Router>
   );
-};
+}
 
 export default App;
