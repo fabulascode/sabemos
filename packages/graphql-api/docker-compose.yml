@@ -1,0 +1,31 @@
+version: "3"
+services:
+  apollo:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 4000:4000
+      - 9229:9229
+      - 3000:3000
+    command: ["yarn", "start"]
+    environment:
+      - RHOST=redis
+    depends_on:
+      - redis
+  redis:
+    image: redis:alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: '[ $$(redis-cli ping) = "PONG" ] || exit 1 ]'
+      timeout: 2s
+      interval: 5s
+      retries: 5
+volumes:
+  redis:

@@ -1,0 +1,29 @@
+{
+  "name": "@sabemos/prisma",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Michael Edelman <michael@edel.mn>",
+  "homepage": "https://github.com/fabulascode/sabemos#readme",
+  "license": "ISC",
+  "main": "lib/prisma.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabulascode/sabemos.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/fabulascode/sabemos/issues"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "@sabemos/graphql-api",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "> TODO: description",
+  "author": "Michael Edelman <michael@edel.mn>",
+  "homepage": "https://github.com/fabulascode/sabemos#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabulascode/sabemos.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "start": "nodemon -e  ts,graphql -x ts-node src/index.ts",
+    "build": "rimraf dist && tsc --project tsconfig.json"
+  },
+  "bugs": {
+    "url": "https://github.com/fabulascode/sabemos/issues"
+  },
+  "dependencies": {
+    "apollo-datasource": "^0.3.1",
+    "apollo-link": "^1.2.11",
+    "apollo-server": "^2.4.8",
+    "apollo-server-cache-redis": "^0.3.1",
+    "apollo-server-express": "^2.4.8",
+    "bluebird": "^3.5.4",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "dataloader": "^1.4.0",
+    "express": "^4.16.4",
+    "graphql": "^14.2.1",
+    "graphql-redis-subscriptions": "^2.1.0",
+    "graphql-voyager": "^1.0.0-rc.27",
+    "ioredis": "^4.9.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.4.0",
+    "lodash": "^4.17.11",
+    "node-fetch": "^2.4.0",
+    "subscriptions-transport-ws": "^0.9.16",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "dotenv": "^7.0.0",
+    "nodemon": "^1.18.11",
+    "ts-node": "^8.1.0"
+  }
+}
