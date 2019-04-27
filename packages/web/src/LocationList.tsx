@@ -16,7 +16,7 @@ export default function LocationList() {
   return (
     <ol {...style}>
       {locationData.map(location => (
-        <li {...itemStyle}>
+        <li key={location.name} {...itemStyle}>
           <LocationInfo {...location} />
         </li>
       ))}
