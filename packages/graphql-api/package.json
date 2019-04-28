@@ -22,7 +22,9 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "start": "npx nodemon -e ts,graphql -x ts-node ./src/index.ts",
+    "start": "npx prisma deploy && npx nodemon -e ts,graphql -x ts-node ./src/index.ts",
+    "dev": "docker-compose up",
+    "down": "docker-compose down",
     "build": "rimraf dist && tsc --project tsconfig.json"
   },
   "bugs": {
