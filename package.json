@@ -5,7 +5,10 @@
   ],
   "private": true,
   "scripts": {
-    "start:web": "npx lerna run dev --scope=@sabemos/web"
+    "start:web": "npx lerna run dev --scope=@sabemos/web --stream",
+    "start:api": "npx lerna run dev --scope=@sabemos/graphql-api --stream",
+    "start": "npx lerna run dev --stream",
+    "stop": "npx lerna run down --stream"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",

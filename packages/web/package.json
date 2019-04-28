@@ -19,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "docker-compose up -d",
+    "dev": "docker-compose up",
+    "down": "docker-compose down",
     "tsc": "tsc"
   },
   "eslintConfig": {

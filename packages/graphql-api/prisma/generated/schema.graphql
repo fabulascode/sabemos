@@ -1609,6 +1609,8 @@ type GovernmentBody {
   createdAt: DateTime!
   updatedAt: DateTime!
   facilities(where: GovernmentFacilityWhereInput, orderBy: GovernmentFacilityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentFacility!]
+  name: String!
+  abbr: String
   parent: GovernmentBody
   children(where: GovernmentBodyWhereInput, orderBy: GovernmentBodyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GovernmentBody!]
   metadata: GovernmentBodyMetadata!
@@ -1623,6 +1625,8 @@ type GovernmentBodyConnection {
 input GovernmentBodyCreateInput {
   id: ID
   facilities: GovernmentFacilityCreateManyInput
+  name: String!
+  abbr: String
   parent: GovernmentBodyCreateOneWithoutParentInput
   children: GovernmentBodyCreateManyWithoutChildrenInput
   metadata: GovernmentBodyMetadataCreateOneInput!
@@ -1646,6 +1650,8 @@ input GovernmentBodyCreateOneWithoutParentInput {
 input GovernmentBodyCreateWithoutChildrenInput {
   id: ID
   facilities: GovernmentFacilityCreateManyInput
+  name: String!
+  abbr: String
   parent: GovernmentBodyCreateOneWithoutParentInput
   metadata: GovernmentBodyMetadataCreateOneInput!
 }
@@ -1653,6 +1659,8 @@ input GovernmentBodyCreateWithoutChildrenInput {
 input GovernmentBodyCreateWithoutParentInput {
   id: ID
   facilities: GovernmentFacilityCreateManyInput
+  name: String!
+  abbr: String
   children: GovernmentBodyCreateManyWithoutChildrenInput
   metadata: GovernmentBodyMetadataCreateOneInput!
 }
@@ -1789,12 +1797,18 @@ enum GovernmentBodyOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
+  name_ASC
+  name_DESC
+  abbr_ASC
+  abbr_DESC
 }
 
 type GovernmentBodyPreviousValues {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
+  name: String!
+  abbr: String
 }
 
 input GovernmentBodyScalarWhereInput {
@@ -1828,6 +1842,34 @@ input GovernmentBodyScalarWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  abbr: String
+  abbr_not: String
+  abbr_in: [String!]
+  abbr_not_in: [String!]
+  abbr_lt: String
+  abbr_lte: String
+  abbr_gt: String
+  abbr_gte: String
+  abbr_contains: String
+  abbr_not_contains: String
+  abbr_starts_with: String
+  abbr_not_starts_with: String
+  abbr_ends_with: String
+  abbr_not_ends_with: String
   AND: [GovernmentBodyScalarWhereInput!]
   OR: [GovernmentBodyScalarWhereInput!]
   NOT: [GovernmentBodyScalarWhereInput!]
@@ -1853,6 +1895,8 @@ input GovernmentBodySubscriptionWhereInput {
 
 input GovernmentBodyUpdateDataInput {
   facilities: GovernmentFacilityUpdateManyInput
+  name: String
+  abbr: String
   parent: GovernmentBodyUpdateOneWithoutParentInput
   children: GovernmentBodyUpdateManyWithoutChildrenInput
   metadata: GovernmentBodyMetadataUpdateOneRequiredInput
@@ -1860,9 +1904,21 @@ input GovernmentBodyUpdateDataInput {
 
 input GovernmentBodyUpdateInput {
   facilities: GovernmentFacilityUpdateManyInput
+  name: String
+  abbr: String
   parent: GovernmentBodyUpdateOneWithoutParentInput
   children: GovernmentBodyUpdateManyWithoutChildrenInput
   metadata: GovernmentBodyMetadataUpdateOneRequiredInput
+}
+
+input GovernmentBodyUpdateManyDataInput {
+  name: String
+  abbr: String
+}
+
+input GovernmentBodyUpdateManyMutationInput {
+  name: String
+  abbr: String
 }
 
 input GovernmentBodyUpdateManyWithoutChildrenInput {
@@ -1874,6 +1930,12 @@ input GovernmentBodyUpdateManyWithoutChildrenInput {
   update: [GovernmentBodyUpdateWithWhereUniqueWithoutChildrenInput!]
   upsert: [GovernmentBodyUpsertWithWhereUniqueWithoutChildrenInput!]
   deleteMany: [GovernmentBodyScalarWhereInput!]
+  updateMany: [GovernmentBodyUpdateManyWithWhereNestedInput!]
+}
+
+input GovernmentBodyUpdateManyWithWhereNestedInput {
+  where: GovernmentBodyScalarWhereInput!
+  data: GovernmentBodyUpdateManyDataInput!
 }
 
 input GovernmentBodyUpdateOneRequiredInput {
@@ -1894,12 +1956,16 @@ input GovernmentBodyUpdateOneWithoutParentInput {
 
 input GovernmentBodyUpdateWithoutChildrenDataInput {
   facilities: GovernmentFacilityUpdateManyInput
+  name: String
+  abbr: String
   parent: GovernmentBodyUpdateOneWithoutParentInput
   metadata: GovernmentBodyMetadataUpdateOneRequiredInput
 }
 
 input GovernmentBodyUpdateWithoutParentDataInput {
   facilities: GovernmentFacilityUpdateManyInput
+  name: String
+  abbr: String
   children: GovernmentBodyUpdateManyWithoutChildrenInput
   metadata: GovernmentBodyMetadataUpdateOneRequiredInput
 }
@@ -1959,6 +2025,34 @@ input GovernmentBodyWhereInput {
   facilities_every: GovernmentFacilityWhereInput
   facilities_some: GovernmentFacilityWhereInput
   facilities_none: GovernmentFacilityWhereInput
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  abbr: String
+  abbr_not: String
+  abbr_in: [String!]
+  abbr_not_in: [String!]
+  abbr_lt: String
+  abbr_lte: String
+  abbr_gt: String
+  abbr_gte: String
+  abbr_contains: String
+  abbr_not_contains: String
+  abbr_starts_with: String
+  abbr_not_starts_with: String
+  abbr_ends_with: String
+  abbr_not_ends_with: String
   parent: GovernmentBodyWhereInput
   children_every: GovernmentBodyWhereInput
   children_some: GovernmentBodyWhereInput
@@ -2631,6 +2725,7 @@ type Mutation {
   deleteManyGovernmentActorProfiles(where: GovernmentActorProfileWhereInput): BatchPayload!
   createGovernmentBody(data: GovernmentBodyCreateInput!): GovernmentBody!
   updateGovernmentBody(data: GovernmentBodyUpdateInput!, where: GovernmentBodyWhereUniqueInput!): GovernmentBody
+  updateManyGovernmentBodies(data: GovernmentBodyUpdateManyMutationInput!, where: GovernmentBodyWhereInput): BatchPayload!
   upsertGovernmentBody(where: GovernmentBodyWhereUniqueInput!, create: GovernmentBodyCreateInput!, update: GovernmentBodyUpdateInput!): GovernmentBody!
   deleteGovernmentBody(where: GovernmentBodyWhereUniqueInput!): GovernmentBody
   deleteManyGovernmentBodies(where: GovernmentBodyWhereInput): BatchPayload!

@@ -3,6 +3,8 @@ type GovernmentBody {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   facilities: [GovernmentFacility]
+  name: String!
+  abbr: String
   parent: GovernmentBody @relation(name: "ParentOnGovernmentBody")
   children: [GovernmentBody!]! @relation(name: "ChildrenOnGovernmentBody")
   metadata: GovernmentBodyMetadata!

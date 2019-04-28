@@ -699,6 +699,12 @@ export interface Prisma {
       where: GovernmentBodyWhereUniqueInput;
     }
   ) => GovernmentBodyPromise;
+  updateManyGovernmentBodies: (
+    args: {
+      data: GovernmentBodyUpdateManyMutationInput;
+      where?: GovernmentBodyWhereInput;
+    }
+  ) => BatchPayloadPromise;
   upsertGovernmentBody: (
     args: {
       where: GovernmentBodyWhereUniqueInput;
@@ -1005,7 +1011,11 @@ export type GovernmentBodyOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
-  | "updatedAt_DESC";
+  | "updatedAt_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "abbr_ASC"
+  | "abbr_DESC";
 
 export type AffiliationRoleOrderByInput =
   | "id_ASC"
@@ -1466,6 +1476,34 @@ export interface GovernmentBodyWhereInput {
   facilities_every?: GovernmentFacilityWhereInput;
   facilities_some?: GovernmentFacilityWhereInput;
   facilities_none?: GovernmentFacilityWhereInput;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  abbr?: String;
+  abbr_not?: String;
+  abbr_in?: String[] | String;
+  abbr_not_in?: String[] | String;
+  abbr_lt?: String;
+  abbr_lte?: String;
+  abbr_gt?: String;
+  abbr_gte?: String;
+  abbr_contains?: String;
+  abbr_not_contains?: String;
+  abbr_starts_with?: String;
+  abbr_not_starts_with?: String;
+  abbr_ends_with?: String;
+  abbr_not_ends_with?: String;
   parent?: GovernmentBodyWhereInput;
   children_every?: GovernmentBodyWhereInput;
   children_some?: GovernmentBodyWhereInput;
@@ -2139,6 +2177,8 @@ export interface GovernmentBodyCreateOneInput {
 export interface GovernmentBodyCreateInput {
   id?: ID_Input;
   facilities?: GovernmentFacilityCreateManyInput;
+  name: String;
+  abbr?: String;
   parent?: GovernmentBodyCreateOneWithoutParentInput;
   children?: GovernmentBodyCreateManyWithoutChildrenInput;
   metadata: GovernmentBodyMetadataCreateOneInput;
@@ -2281,6 +2321,8 @@ export interface GovernmentBodyCreateOneWithoutParentInput {
 export interface GovernmentBodyCreateWithoutParentInput {
   id?: ID_Input;
   facilities?: GovernmentFacilityCreateManyInput;
+  name: String;
+  abbr?: String;
   children?: GovernmentBodyCreateManyWithoutChildrenInput;
   metadata: GovernmentBodyMetadataCreateOneInput;
 }
@@ -2295,6 +2337,8 @@ export interface GovernmentBodyCreateManyWithoutChildrenInput {
 export interface GovernmentBodyCreateWithoutChildrenInput {
   id?: ID_Input;
   facilities?: GovernmentFacilityCreateManyInput;
+  name: String;
+  abbr?: String;
   parent?: GovernmentBodyCreateOneWithoutParentInput;
   metadata: GovernmentBodyMetadataCreateOneInput;
 }
@@ -2567,6 +2611,8 @@ export interface GovernmentBodyUpdateOneRequiredInput {
 
 export interface GovernmentBodyUpdateDataInput {
   facilities?: GovernmentFacilityUpdateManyInput;
+  name?: String;
+  abbr?: String;
   parent?: GovernmentBodyUpdateOneWithoutParentInput;
   children?: GovernmentBodyUpdateManyWithoutChildrenInput;
   metadata?: GovernmentBodyMetadataUpdateOneRequiredInput;
@@ -3003,6 +3049,8 @@ export interface GovernmentBodyUpdateOneWithoutParentInput {
 
 export interface GovernmentBodyUpdateWithoutParentDataInput {
   facilities?: GovernmentFacilityUpdateManyInput;
+  name?: String;
+  abbr?: String;
   children?: GovernmentBodyUpdateManyWithoutChildrenInput;
   metadata?: GovernmentBodyMetadataUpdateOneRequiredInput;
 }
@@ -3026,6 +3074,9 @@ export interface GovernmentBodyUpdateManyWithoutChildrenInput {
   deleteMany?:
     | GovernmentBodyScalarWhereInput[]
     | GovernmentBodyScalarWhereInput;
+  updateMany?:
+    | GovernmentBodyUpdateManyWithWhereNestedInput[]
+    | GovernmentBodyUpdateManyWithWhereNestedInput;
 }
 
 export interface GovernmentBodyUpdateWithWhereUniqueWithoutChildrenInput {
@@ -3035,6 +3086,8 @@ export interface GovernmentBodyUpdateWithWhereUniqueWithoutChildrenInput {
 
 export interface GovernmentBodyUpdateWithoutChildrenDataInput {
   facilities?: GovernmentFacilityUpdateManyInput;
+  name?: String;
+  abbr?: String;
   parent?: GovernmentBodyUpdateOneWithoutParentInput;
   metadata?: GovernmentBodyMetadataUpdateOneRequiredInput;
 }
@@ -3093,9 +3146,47 @@ export interface GovernmentBodyScalarWhereInput {
   updatedAt_lte?: DateTimeInput;
   updatedAt_gt?: DateTimeInput;
   updatedAt_gte?: DateTimeInput;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  abbr?: String;
+  abbr_not?: String;
+  abbr_in?: String[] | String;
+  abbr_not_in?: String[] | String;
+  abbr_lt?: String;
+  abbr_lte?: String;
+  abbr_gt?: String;
+  abbr_gte?: String;
+  abbr_contains?: String;
+  abbr_not_contains?: String;
+  abbr_starts_with?: String;
+  abbr_not_starts_with?: String;
+  abbr_ends_with?: String;
+  abbr_not_ends_with?: String;
   AND?: GovernmentBodyScalarWhereInput[] | GovernmentBodyScalarWhereInput;
   OR?: GovernmentBodyScalarWhereInput[] | GovernmentBodyScalarWhereInput;
   NOT?: GovernmentBodyScalarWhereInput[] | GovernmentBodyScalarWhereInput;
+}
+
+export interface GovernmentBodyUpdateManyWithWhereNestedInput {
+  where: GovernmentBodyScalarWhereInput;
+  data: GovernmentBodyUpdateManyDataInput;
+}
+
+export interface GovernmentBodyUpdateManyDataInput {
+  name?: String;
+  abbr?: String;
 }
 
 export interface GovernmentBodyUpsertWithoutParentInput {
@@ -3196,9 +3287,16 @@ export interface GovernmentActorProfileUpdateManyMutationInput {
 
 export interface GovernmentBodyUpdateInput {
   facilities?: GovernmentFacilityUpdateManyInput;
+  name?: String;
+  abbr?: String;
   parent?: GovernmentBodyUpdateOneWithoutParentInput;
   children?: GovernmentBodyUpdateManyWithoutChildrenInput;
   metadata?: GovernmentBodyMetadataUpdateOneRequiredInput;
+}
+
+export interface GovernmentBodyUpdateManyMutationInput {
+  name?: String;
+  abbr?: String;
 }
 
 export interface GovernmentBodyMetadataUpdateInput {
@@ -3858,6 +3956,8 @@ export interface GovernmentBody {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
+  name: String;
+  abbr?: String;
 }
 
 export interface GovernmentBodyPromise
@@ -3877,6 +3977,8 @@ export interface GovernmentBodyPromise
       last?: Int;
     }
   ) => T;
+  name: () => Promise<String>;
+  abbr: () => Promise<String>;
   parent: <T = GovernmentBodyPromise>() => T;
   children: <T = FragmentableArray<GovernmentBody>>(
     args?: {
@@ -3909,6 +4011,8 @@ export interface GovernmentBodySubscription
       last?: Int;
     }
   ) => T;
+  name: () => Promise<AsyncIterator<String>>;
+  abbr: () => Promise<AsyncIterator<String>>;
   parent: <T = GovernmentBodySubscription>() => T;
   children: <T = Promise<AsyncIterator<GovernmentBodySubscription>>>(
     args?: {
@@ -5736,6 +5840,8 @@ export interface GovernmentBodyPreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
+  name: String;
+  abbr?: String;
 }
 
 export interface GovernmentBodyPreviousValuesPromise
@@ -5744,6 +5850,8 @@ export interface GovernmentBodyPreviousValuesPromise
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
+  name: () => Promise<String>;
+  abbr: () => Promise<String>;
 }
 
 export interface GovernmentBodyPreviousValuesSubscription
@@ -5752,6 +5860,8 @@ export interface GovernmentBodyPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  name: () => Promise<AsyncIterator<String>>;
+  abbr: () => Promise<AsyncIterator<String>>;
 }
 
 export interface GovernmentBodyMetadataSubscriptionPayload {
@@ -6248,6 +6358,6 @@ export const models: Model[] = [
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
-  endpoint: `http://localhost:4466`
+  endpoint: `http://prisma:4466`
 });
 export const prisma = new Prisma();

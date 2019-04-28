@@ -4,45 +4,59 @@ import { importSchema } from "graphql-import";
 import { makeExecutableSchema } from "graphql-tools";
 import { applyMiddleware } from "graphql-middleware";
 import { Prisma } from "../../prisma/prisma-client";
+import datamodelInfo from "../../prisma/generated/nexus-prisma";
 import { idArg, queryType, stringArg } from "nexus";
 import { makePrismaSchema, prismaObjectType } from "nexus-prisma";
 import * as path from "path";
 import { permissions } from "./middleware";
 
 export const db: Prisma = new Prisma({
-  endpoint: process.env.PRISMA_ENDPOINT || "http://localhost:4466"
+  endpoint: process.env.PRISMA_ENDPOINT || "http://prisma:4466"
 });
 
 const typeDefs: any = importSchema(
   path.resolve(__dirname, "../schema.graphql")
 );
 
-const fakeUsers = [{ id: "1", handle: "Mike" }, { id: "2", handle: "Nat" }];
+const Query = prismaObjectType({
+  name: "Query",
+  definition: t => t.prismaFields(["*"])
+});
 
-const resolvers = {
-  Query: {
-    users: () => fakeUsers
+const Mutation = prismaObjectType({
+  name: "Mutation",
+  definition: t => t.prismaFields(["*"])
+});
+
+const schema = makePrismaSchema({
+  types: [Query, Mutation],
+  prisma: {
+    datamodelInfo,
+    client: db
+  },
+  outputs: {
+    schema: path.join(__dirname, "./generated.schema.graphql"),
+    typegen: path.join(__dirname, "./generated/nexus.ts")
   }
-};
+});
 
-const schema = applyMiddleware(
-  makeExecutableSchema({
-    typeDefs,
-    resolvers
-  }),
-  permissions
-);
+// const schema = applyMiddleware(
+//   makeExecutableSchema({
+//     typeDefs,
+//     resolvers
+//   }),
+//   permissions
+// );
 
 export const graphqlServer = new ApolloServer({
-  typeDefs,
-  resolvers,
-  mocks: true,
+  schema,
+
   introspection: true,
   tracing: true,
   context: async request => {
     return {
       ...request,
-      db
+      prisma: db
     };
   },
   cache: new RedisCache({
