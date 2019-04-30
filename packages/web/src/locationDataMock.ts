@@ -2,6 +2,7 @@
 // This should be replaced with a graphql query
 export default [
   {
+    id: 12345,
     name: "ICE OCC – Chicago",
     tel: "(312) 542-8200",
     address: {
@@ -20,6 +21,7 @@ export default [
     ]
   },
   {
+    id: 12346,
     name: "ICE OCC – Kansas City Sub-Office",
     tel: "(816) 391-7200",
     address: {
@@ -40,6 +42,7 @@ export default [
     email: "OCC-KAN-Duty@ice.dhs.gov"
   },
   {
+    id: 12347,
     name: "ICE ERO - Chicago",
     address: {
       line1: "101 West Congress Parkway",
@@ -62,6 +65,7 @@ export default [
     email: "Chicago.Outreach@ice.dhs.gov"
   },
   {
+    id: 2016,
     name: "ICE HSI - Chicago",
     address: {
       line1: "1 North Tower Lane",
