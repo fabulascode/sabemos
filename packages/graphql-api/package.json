@@ -46,7 +46,7 @@
     "graphql-import": "^0.7.1",
     "graphql-middleware": "^3.0.2",
     "graphql-redis-subscriptions": "^2.1.0",
-    "graphql-shield": "^5.3.4",
+    "graphql-shield": "^6.0.6",
     "graphql-subscriptions": "^1.1.0",
     "graphql-tools": "^4.0.4",
     "graphql-voyager": "^1.0.0-rc.27",
